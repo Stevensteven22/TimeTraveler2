@@ -1,0 +1,30 @@
+<Window
+    Content="{Binding Content}"
+    DataContext="{Binding MainWindowViewModel, Source={StaticResource ServiceLocator}}"
+    Height="800"
+    Icon="/Assets/avalonia-logo.ico"
+    Title="时间旅行者"
+    Width="1300"
+    WindowStartupLocation="CenterScreen"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.MainWindow"
+    x:DataType="vm:MainWindowViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+
+    <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="Initialized">
+            <ia:InvokeCommandAction Command="{Binding OnInitializedCommand}" />
+        </ia:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+
+</Window>

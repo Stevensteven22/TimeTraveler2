@@ -1,0 +1,151 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <controls:ThunderControl Height="800" Width="1200" />
+    </Design.PreviewWith>
+    <Styles.Resources>
+        <SolidColorBrush Color="#ae8ebe" x:Key="ThunderColor" />
+        <x:String x:Key="DefaultTitle">先选左后右，修复电路，使电流通畅。</x:String>
+    </Styles.Resources>
+    <Style Selector="controls|ThunderControl">
+        <!--  Set Defaults  -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.62*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+                    <!--  标题  -->
+                    <TextBlock
+                        Classes.Completed="{Binding IsCompleted, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:ThunderControl}}"
+                        FontSize="50"
+                        Foreground="#c7c0a6"
+                        Grid.ColumnSpan="3"
+                        HorizontalAlignment="Center"
+                        Margin="5"
+                        RenderTransformOrigin="50%,50%"
+                        Text="{StaticResource DefaultTitle}"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Top">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                        <TextBlock.Transitions>
+                            <Transitions>
+                                <DoubleTransition Duration="0:0:1" Property="Opacity" />
+                            </Transitions>
+                        </TextBlock.Transitions>
+                        <TextBlock.Styles>
+                            <Style Selector="TextBlock.Completed">
+                                <Setter Property="Opacity" Value="0" />
+                                <Style.Animations>
+                                    <Animation Duration="0:0:1">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                        </TextBlock.Styles>
+                    </TextBlock>
+
+                    <Grid>
+                        <controls:Battery Classes="Left" x:Name="PART_LeftBattery" />
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <controls:ElectricCurrent
+                            ArrowBodyWidth="700"
+                            IsCompleted="{Binding Batteries[0].IsHasElement, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsVisible="{Binding Batteries[0].IsClicked, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            OffsetX="50"
+                            OffsetY="-200"
+                            RotationAngle="-20" />
+                        <controls:ElectricCurrent
+                            ArrowBodyWidth="700"
+                            IsCompleted="{Binding Batteries[1].IsHasElement, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsVisible="{Binding Batteries[1].IsClicked, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            OffsetX="20"
+                            OffsetY="-100"
+                            RotationAngle="-10" />
+                        <controls:ElectricCurrent
+                            ArrowBodyWidth="700"
+                            IsCompleted="{Binding Batteries[2].IsHasElement, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsVisible="{Binding Batteries[2].IsClicked, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            OffsetX="10" />
+                        <controls:ElectricCurrent
+                            ArrowBodyWidth="700"
+                            IsCompleted="{Binding Batteries[3].IsHasElement, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsVisible="{Binding Batteries[3].IsClicked, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            OffsetX="20"
+                            OffsetY="100"
+                            RotationAngle="10" />
+                        <controls:ElectricCurrent
+                            ArrowBodyWidth="700"
+                            IsCompleted="{Binding Batteries[4].IsHasElement, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsVisible="{Binding Batteries[4].IsClicked, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            OffsetX="50"
+                            OffsetY="200"
+                            RotationAngle="20" />
+                    </Grid>
+
+                    <Grid Grid.Column="2">
+                        <ListBox
+                            IsHitTestVisible="{Binding #PART_LeftBattery.IsLeftSelected}"
+                            ItemsSource="{Binding Batteries, RelativeSource={RelativeSource TemplatedParent}}"
+                            VerticalAlignment="Center">
+                            <ListBox.ItemContainerTheme>
+                                <ControlTheme TargetType="ListBoxItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Border x:Name="PART_ListBoxItemBorder">
+                                                    <controls:Battery
+                                                        Command="{Binding ClickBatteryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:ThunderControl}}}"
+                                                        CommandParameter="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}"
+                                                        IsSelected="{Binding Path=IsSelected, Mode=OneWayToSource, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style Selector="^:selected /template/ Border#PART_ListBoxItemBorder">
+                                        <Setter Property="BorderBrush" Value="{StaticResource ThunderColor}" />
+                                        <Setter Property="BorderThickness" Value="10" />
+                                        <Setter Property="Padding" Value="10" />
+                                        <Setter Property="CornerRadius" Value="20" />
+                                    </Style>
+                                </ControlTheme>
+                            </ListBox.ItemContainerTheme>
+
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical" Spacing="80" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+                    </Grid>
+
+
+                    <controls:ShowElementalControl
+                        ClickCommand="{Binding ClickCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:ThunderControl}}, Mode=OneWay}"
+                        ClickCommandParameter="{TemplateBinding ClickCommandParameter}"
+                        ElementalImage="ThunderElemental"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        IsShowEnabled="{Binding IsCompleted, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:ThunderControl}}" />
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

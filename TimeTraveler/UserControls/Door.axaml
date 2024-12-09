@@ -1,0 +1,137 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:cv="using:TimeTraveler.Converters"
+    xmlns:transitions="clr-namespace:TimeTraveler.Transitions"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <controls:Door />
+    </Design.PreviewWith>
+    <Styles.Resources>
+        <cv:ElementTypeToImageConverter x:Key="ElementTypeToImageConverter" />
+    </Styles.Resources>
+
+    <Style Selector="controls|Door:isAnimationEnabled /template/Button#PART_ContentControl">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TransitioningContentControl Content="{Binding RelativeSource={RelativeSource AncestorType=controls:Door, Mode=FindAncestor}, Path=SelectedItem}">
+                        <TransitioningContentControl.PageTransition>
+                            <transitions:SwitchTransition />
+                        </TransitioningContentControl.PageTransition>
+                        <TransitioningContentControl.ContentTemplate>
+
+                            <DataTemplate DataType="Image">
+
+                                <Grid>
+                                    <u:Avatar
+                                        Classes="Circle"
+                                        Height="{TemplateBinding Height}"
+                                        IsHitTestVisible="{TemplateBinding IsEnabled}"
+                                        Source="{Binding Source}"
+                                        Width="{TemplateBinding Width}"
+                                        x:Name="PART_Avatar" />
+                                    <Image
+                                        Height="50"
+                                        HorizontalAlignment="Center"
+                                        IsHitTestVisible="False"
+                                        Source="{Binding DoorElementType, RelativeSource={RelativeSource AncestorType=controls:Door, Mode=FindAncestor}, Converter={StaticResource ElementTypeToImageConverter}}"
+                                        VerticalAlignment="Center"
+                                        Width="50"
+                                        x:Name="PART_Element" />
+                                </Grid>
+
+                            </DataTemplate>
+
+                        </TransitioningContentControl.ContentTemplate>
+
+                    </TransitioningContentControl>
+
+
+                </ControlTemplate>
+            </Setter.Value>
+
+        </Setter>
+
+
+    </Style>
+
+    <Style Selector="controls|Door">
+
+        <!--  Set Defaults  -->
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Height" Value="200" />
+        <Setter Property="ClipToBounds" Value="False" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="controls:Door">
+
+                <Grid>
+
+
+                    <ListBox
+                        IsVisible="False"
+                        SelectedItem="{TemplateBinding SelectedItem,
+                                                       Mode=TwoWay}"
+                        x:Name="PART_AnimationList">
+                        <Image Source="../Assets/原神关卡的小门1.png" />
+                        <Image Source="../Assets/原神关卡的小门2.png" />
+                        <Image Source="../Assets/原神关卡的小门3.png" />
+                        <Image Source="../Assets/原神关卡的小门4.png" />
+                        <Image Source="../Assets/原神关卡的小门5.png" />
+                    </ListBox>
+
+                    <Button
+                        Command="{TemplateBinding ClickCommand}"
+                        CommandParameter="{TemplateBinding ClickCommandParameter}"
+                        Height="{TemplateBinding Height}"
+                        RenderTransformOrigin="0.5,0.5"
+                        Width="{TemplateBinding Width}"
+                        x:Name="PART_ContentControl">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                </Grid>
+
+            </ControlTemplate>
+
+
+        </Setter>
+        <Style Selector="^:isClicked /template/Button#PART_ContentControl">
+            <!--<Setter Property="IsEnabled" Value="False" />-->
+            <Style.Animations>
+                <Animation Duration="0:0:0.3" Easing="CubicEaseInOut">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                        <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                        <Setter Property="TranslateTransform.X" Value="0" />
+                        <Setter Property="TranslateTransform.Y" Value="0" />
+
+                    </KeyFrame>
+                    <KeyFrame Cue="50%">
+                        <Setter Property="ScaleTransform.ScaleX" Value="1.05" />
+                        <Setter Property="ScaleTransform.ScaleY" Value="1.05" />
+                        <Setter Property="TranslateTransform.X" Value="-5" />
+                        <Setter Property="TranslateTransform.Y" Value="-5" />
+
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                        <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                        <Setter Property="TranslateTransform.X" Value="0" />
+                        <Setter Property="TranslateTransform.Y" Value="0" />
+
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </Style>
+</Styles>

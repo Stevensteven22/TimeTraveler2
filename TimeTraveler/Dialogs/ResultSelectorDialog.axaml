@@ -1,0 +1,98 @@
+﻿<UserControl
+    Background="{DynamicResource ControlColor}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Dialogs.ResultSelectorDialog"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:local="clr-namespace:TimeTraveler.Dialogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:TimeTraveler.Libary.Models;assembly=TimeTraveler.Libary"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.DataContext>
+        <local:ResultSelectorDialogViewModel />
+    </Design.DataContext>
+    <UserControl.Resources />
+
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.Title">
+            <Setter Property="Foreground" Value="{DynamicResource TitleColor}" />
+            <Setter Property="FontSize" Value="26" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="TextBlock.Content">
+            <Setter Property="Foreground" Value="{DynamicResource ContentColor}" />
+            <Setter Property="FontSize" Value="26" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+    </UserControl.Styles>
+    <Grid
+        Margin="24"
+        MinWidth="400"
+        RowDefinitions="Auto, *, Auto">
+        <TextBlock Classes="Title" Text="{Binding AskedTitleText}" />
+        <u:Form
+            Grid.Row="1"
+            HorizontalAlignment="Stretch"
+            LabelPosition="Top"
+            Margin="24">
+            <u:Form.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid />
+                </ItemsPanelTemplate>
+            </u:Form.ItemsPanel>
+            <u:FormItem>
+                <ItemsControl ItemsSource="{Binding Results}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="models:ResultModel">
+                            <CheckBox
+                                Command="{Binding DataContext.IsCheckedChangedCommand, RelativeSource={RelativeSource AncestorType=local:ResultSelectorDialog}}"
+                                CommandParameter="{Binding ., RelativeSource={RelativeSource Self}}"
+                                Content="{Binding Description}"
+                                Foreground="{DynamicResource ContentColor}"
+                                IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                Margin="60,10,0,10"
+                                RenderTransform="scale(1.5)"
+                                Tag="{Binding Id}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" Spacing="40" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+            </u:FormItem>
+        </u:Form>
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="50">
+
+            <userControls:OKButton
+                Command="{Binding PrimaryButtonCommand}"
+                CommandParameter="{Binding PrimaryButtonCommandParameter}"
+                Content="{Binding PrimaryButtonContent}"
+                IsVisible="{Binding IsPrimaryButtonVisible}" />
+            <userControls:OKButton
+                Command="{Binding SecondaryButtonCommand}"
+                CommandParameter="{Binding SecondaryButtonCommandParameter}"
+                Content="{Binding SecondaryButtonContent}"
+                IsVisible="{Binding IsSecondaryButtonVisible}" />
+
+        </StackPanel>
+    </Grid>
+</UserControl>

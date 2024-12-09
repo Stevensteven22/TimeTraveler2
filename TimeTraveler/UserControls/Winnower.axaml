@@ -1,0 +1,199 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:converters="clr-namespace:TimeTraveler.Converters"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <controls:Winnower />
+    </Design.PreviewWith>
+
+    <Styles.Resources>
+        <Color x:Key="TitleColor">#d3bc8e</Color>
+        <Color x:Key="ContentColor">#b1aca4</Color>
+        <Color x:Key="ControlColor">#3f4555</Color>
+        <x:String x:Key="DefaultTitle">调整风向，使风车停止旋转。</x:String>
+    </Styles.Resources>
+    <Style Selector="controls|Winnower">
+        <!--  Set Defaults  -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--  标题  -->
+                    <TextBlock
+                        Classes.MeltCompleted="{Binding IsRotateCompleted, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                        FontSize="50"
+                        Foreground="#c7c0a6"
+                        HorizontalAlignment="Center"
+                        RenderTransformOrigin="50%,50%"
+                        Text="{StaticResource DefaultTitle}"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Center">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                        <TextBlock.Transitions>
+                            <Transitions>
+                                <DoubleTransition Duration="0:0:1" Property="Opacity" />
+                            </Transitions>
+                        </TextBlock.Transitions>
+                        <TextBlock.Styles>
+                            <Style Selector="TextBlock.MeltCompleted">
+                                <Setter Property="Opacity" Value="0" />
+                                <Style.Animations>
+                                    <Animation Duration="0:0:1">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                        </TextBlock.Styles>
+                    </TextBlock>
+                    <!--  标题  -->
+                    <Image
+                        Grid.Row="1"
+                        Height="700"
+                        Name="PART_Winnower"
+                        RenderTransformOrigin="50%,50%"
+                        Source="/Assets/风车.png"
+                        Width="700">
+                        <Image.RenderTransform>
+                            <RotateTransform />
+                        </Image.RenderTransform>
+                        <Image.Styles>
+                            <Style Selector="Image.WindClockwiseSlowly">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:1" IterationCount="INFINITE">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="RotateTransform.Angle" Value="0" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="RotateTransform.Angle" Value="360" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                            <Style Selector="Image.WindAnticlockwiseSlowly">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:1" IterationCount="INFINITE">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="RotateTransform.Angle" Value="360" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="RotateTransform.Angle" Value="0" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+
+                            <Style Selector="Image.WindClockwiseFastly">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:0.33" IterationCount="INFINITE">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="RotateTransform.Angle" Value="0" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="RotateTransform.Angle" Value="360" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                            <Style Selector="Image.WindAnticlockwiseFastly">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:0.33" IterationCount="INFINITE">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="RotateTransform.Angle" Value="360" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="RotateTransform.Angle" Value="0" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                            <Style Selector="Image.WindClockwiseFastly">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:0.33" IterationCount="INFINITE">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="RotateTransform.Angle" Value="0" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="RotateTransform.Angle" Value="360" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                            <Style Selector="Image.WindCompletelyStopped">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:2" IterationCount="1">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="RotateTransform.Angle" Value="0" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="25%">
+                                            <Setter Property="RotateTransform.Angle" Value="360" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="50%">
+                                            <Setter Property="RotateTransform.Angle" Value="180" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="75%">
+                                            <Setter Property="RotateTransform.Angle" Value="360" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="RotateTransform.Angle" Value="0" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                        </Image.Styles>
+                    </Image>
+
+                    <ComboBox
+                        Classes="Bordered"
+                        FontSize="30"
+                        Foreground="{StaticResource ContentColor}"
+                        Grid.Row="2"
+                        Height="60"
+                        HorizontalAlignment="Stretch"
+                        ItemsSource="{Binding WindDirections, RelativeSource={RelativeSource TemplatedParent}}"
+                        Margin="10"
+                        Name="PART_WindDirection"
+                        PlaceholderForeground="White"
+                        PlaceholderText="请选择风元素的风向"
+                        SelectedItem="{TemplateBinding WinnowerDirection,
+                                                       Mode=TwoWay}"
+                        VerticalAlignment="Center"
+                        Width="400">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="{StaticResource ContentColor}"
+                        Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        Text="{Binding WindSpeed, RelativeSource={RelativeSource TemplatedParent}, StringFormat='（风元素之力）速度:{0} m/s'}" />
+
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

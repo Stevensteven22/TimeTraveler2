@@ -1,0 +1,15 @@
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StyleInclude Source="ChapterButton.axaml" />
+    <StyleInclude Source="ChapterTimeLineItem.axaml" />
+    <StyleInclude Source="ChapterTimeLine.axaml" />
+    <StyleInclude Source="Door.axaml" />
+    <StyleInclude Source="FlameProgressBar.axaml" />
+    <StyleInclude Source="Ice.axaml" />
+    <StyleInclude Source="IceSlider.axaml" />
+    <StyleInclude Source="Winnower.axaml" />
+    <StyleInclude Source="ShowElementalControl.axaml" />
+    <StyleInclude Source="Rock.axaml" />
+    <StyleInclude Source="Battery.axaml" />
+    <StyleInclude Source="ThunderControl.axaml" />
+    <StyleInclude Source="ElectricCurrent.axaml" />
+</Styles>

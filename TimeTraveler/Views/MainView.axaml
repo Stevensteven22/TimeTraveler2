@@ -1,0 +1,159 @@
+﻿<UserControl
+    FontFamily="{StaticResource MyFont}"
+    d:DataContext="{Binding MainViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.MainView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:cv="using:TimeTraveler.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:lm="using:TimeTraveler.Libary.Models"
+    xmlns:local="clr-namespace:TimeTraveler.Views"
+    xmlns:lvm="using:TimeTraveler.Libary.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:selectors="clr-namespace:TimeTraveler.TemplateSelectors"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Styles>
+        <Style Selector="local|MainView">
+            <Setter Property="IsNavigationButtonEnabled" Value="{Binding IsNavigationEnabled}" />
+            <Setter Property="Content" Value="{DynamicResource MainViewContent}" />
+            <Style Selector="^:isNavigationEnabled">
+                <Setter Property="Content" Value="{Binding Content}" />
+            </Style>
+        </Style>
+
+    </UserControl.Styles>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <cv:ChapterNameConverter x:Key="ChapterNameConverter" />
+            <cv:TimelineItemTypeConverter x:Key="TimelineItemTypeConverter" />
+            <selectors:TimelineIconTemplateSelector x:Key="IconSelector">
+                <SolidColorBrush Color="{DynamicResource SemiGray6Color}" x:Key="Default" />
+                <SolidColorBrush Color="{DynamicResource SemiBlue6Color}" x:Key="Ongoing" />
+                <SolidColorBrush Color="{DynamicResource SemiGreen6Color}" x:Key="Success" />
+                <SolidColorBrush Color="{DynamicResource SemiOrange6Color}" x:Key="Warning" />
+                <SolidColorBrush Color="{DynamicResource SemiRed6Color}" x:Key="Error" />
+            </selectors:TimelineIconTemplateSelector>
+
+
+
+            <ContentControl x:Key="MainViewContent">
+
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush
+                            Opacity="0.25"
+                            Source="\Assets\主窗口界面.jpg"
+                            Stretch="UniformToFill" />
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Button
+                        Classes="Primary"
+                        Command="{Binding ReturnToStartCommand}"
+                        CornerRadius="10"
+                        Grid.RowSpan="3"
+                        HorizontalAlignment="Right"
+                        Theme="{DynamicResource BorderlessButton}"
+                        VerticalAlignment="Top">
+                        <u:Avatar IsHitTestVisible="False" Source="../Assets/undo_96px.png" />
+                    </Button>
+
+
+
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Carousel
+                            Classes="Columnar Left"
+                            HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding Images}"
+                            Margin="10"
+                            Padding="60,50,60,0"
+                            SelectedItem="{Binding SelectedImage, Mode=TwoWay}"
+                            Theme="{DynamicResource FullCarousel}"
+                            VerticalAlignment="Stretch">
+                            <i:Interaction.Behaviors>
+                                <ia:EventTriggerBehavior EventName="SelectionChanged">
+                                    <ia:InvokeCommandAction Command="{Binding OnSelectionChangedCommand}" />
+                                </ia:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                            <Carousel.PageTransition>
+                                <PageSlide
+                                    Duration="0.5"
+                                    Orientation="Horizontal"
+                                    SlideInEasing="CubicEaseOut"
+                                    SlideOutEasing="CubicEaseIn" />
+                            </Carousel.PageTransition>
+                            <Carousel.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Background="Transparent"
+                                        ClipToBounds="True"
+                                        CornerRadius="10">
+                                        <Image Source="{Binding Path=., Mode=OneTime}" Stretch="Fill" />
+                                    </Border>
+
+                                </DataTemplate>
+                            </Carousel.ItemTemplate>
+                        </Carousel>
+                        <ItemsControl
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            ItemsSource="{Binding MenuItems}"
+                            Margin="10"
+                            VerticalAlignment="Center">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="lvm:ChapterViewModel">
+                                    <controls:ChapterButton
+                                        Command="{Binding Path=DataContext.OnMenuTappedCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
+                                        CommandParameter="{Binding ., RelativeSource={RelativeSource Mode=DataContext}}"
+                                        Content="{Binding Name}"
+                                        IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                                        IsOK="{Binding IsOK, Mode=TwoWay}"
+                                        Padding="40,10" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="30" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Grid>
+                    <u:Divider Grid.Row="1" />
+                    <Grid Grid.Row="2">
+                        <controls:ChapterTimeLine
+                            HeaderMemberBinding="{Binding Name}"
+                            HorizontalAlignment="Center"
+                            IconMemberBinding="{Binding IsOK, Converter={StaticResource TimelineItemTypeConverter}}"
+                            IconTemplate="{StaticResource IconSelector}"
+                            IsOKMemberBinding="{Binding IsOK}"
+                            ItemsSource="{Binding MenuItems}"
+                            TimeMemberBinding="{Binding UpdatedTime}"
+                            VerticalAlignment="Center">
+                            <controls:ChapterTimeLine.ContentMemberBinding>
+                                <MultiBinding Converter="{StaticResource ChapterNameConverter}">
+                                    <Binding Path="Name" />
+                                    <Binding Path="IsOK" />
+                                </MultiBinding>
+                            </controls:ChapterTimeLine.ContentMemberBinding>
+                        </controls:ChapterTimeLine>
+                    </Grid>
+                </Grid>
+            </ContentControl>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+</UserControl>

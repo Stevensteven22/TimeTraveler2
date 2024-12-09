@@ -1,0 +1,187 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <controls:IceSlider Height="800" Width="1000" />
+    </Design.PreviewWith>
+    <Styles.Resources>
+        <x:String x:Key="DefaultTitle">玩家需要用火把融化一根冻结的冰柱，才能获取冰元素。请拖动滑块，调整温度值。</x:String>
+        <x:String x:Key="CompletedTitle">恭喜你的获得冰元素的力量！点击冰霜获取元素！</x:String>
+        <ControlTheme TargetType="Thumb" x:Key="SliderThumbTheme">
+            <Setter Property="Thumb.CornerRadius" Value="{DynamicResource SliderThumbCornerRadius}" />
+            <Setter Property="Thumb.Cursor" Value="Hand" />
+            <Setter Property="Thumb.Background" Value="Transparent" />
+            <Setter Property="Thumb.BorderBrush" Value="Transparent" />
+            <Setter Property="Thumb.ClipToBounds" Value="False" />
+            <Setter Property="Thumb.BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <ControlTemplate TargetType="Thumb">
+                    <Grid>
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}">
+                            <u:Avatar
+                                Classes="Circle"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Height="{TemplateBinding Height}"
+                                IsHitTestVisible="False"
+                                RenderTransformOrigin="50%,50%"
+                                Source="../Assets/gas_300px.png"
+                                Width="{TemplateBinding Width}">
+                                <u:Avatar.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </u:Avatar.RenderTransform>
+                            </u:Avatar>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+            <Style Selector="^:pointerover">
+                <Setter Property="BorderBrush" Value="{DynamicResource SliderThumbPointeroverBorderBrush}" />
+            </Style>
+            <Style Selector="^:pressed">
+                <Setter Property="BorderBrush" Value="{DynamicResource SliderThumbPressedBorderBrush}" />
+            </Style>
+        </ControlTheme>
+    </Styles.Resources>
+
+    <Style Selector="controls|IceSlider">
+        <!--  Set Defaults  -->
+        <Setter Property="Template">
+            <ControlTemplate TargetType="controls:IceSlider">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <!--  标题  -->
+                            <TextBlock
+                                Classes.MeltCompleted="{Binding IsMeltCompleted, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                FontSize="50"
+                                Foreground="#c7c0a6"
+                                HorizontalAlignment="Center"
+                                RenderTransformOrigin="50%,50%"
+                                Text="{StaticResource DefaultTitle}"
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Center">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                                <TextBlock.Transitions>
+                                    <Transitions>
+                                        <DoubleTransition Duration="0:0:1" Property="Opacity" />
+                                    </Transitions>
+                                </TextBlock.Transitions>
+                                <TextBlock.Styles>
+                                    <Style Selector="TextBlock.MeltCompleted">
+                                        <Setter Property="Opacity" Value="0" />
+                                        <Style.Animations>
+                                            <Animation Duration="0:0:1">
+                                                <KeyFrame Cue="0%">
+                                                    <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                                                </KeyFrame>
+                                                <KeyFrame Cue="100%">
+                                                    <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                                                </KeyFrame>
+                                            </Animation>
+                                        </Style.Animations>
+                                    </Style>
+                                </TextBlock.Styles>
+                            </TextBlock>
+                            <!--  标题  -->
+                            <Label
+                                Classes.MeltCompleted="{TemplateBinding IsMeltCompleted}"
+                                Content="{StaticResource CompletedTitle}"
+                                FontSize="50"
+                                Foreground="#c7c0a6"
+                                HorizontalAlignment="Center"
+                                IsVisible="{TemplateBinding IsMeltCompleted,
+                                                            Mode=TwoWay}"
+                                RenderTransformOrigin="50%,50%"
+                                VerticalAlignment="Center">
+                                <Label.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Label.RenderTransform>
+                                <Label.Styles>
+                                    <Style Selector="Label.MeltCompleted">
+                                        <Style.Animations>
+                                            <Animation Duration="0:0:1">
+                                                <KeyFrame Cue="0%">
+                                                    <Setter Property="Opacity" Value="0" />
+                                                    <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                                                </KeyFrame>
+                                                <KeyFrame Cue="100%">
+                                                    <Setter Property="Opacity" Value="1" />
+                                                    <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                                                </KeyFrame>
+                                            </Animation>
+                                        </Style.Animations>
+                                    </Style>
+                                </Label.Styles>
+                            </Label>
+                        </Grid>
+                        <controls:Ice
+                            ClickCommand="{TemplateBinding ClickCommand}"
+                            ClickCommandParameter="{TemplateBinding ClickCommandParameter}"
+                            Grid.Row="1"
+                            Value="{TemplateBinding Value,
+                                                    Mode=OneWay}" />
+                    </Grid>
+
+                    <Slider
+                        ClipToBounds="False"
+                        CornerRadius="20"
+                        Foreground="#00b2ff"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Maximum="100"
+                        Minimum="0"
+                        Orientation="Vertical"
+                        RenderTransformOrigin="50%,50%"
+                        TickPlacement="TopLeft"
+                        Value="{TemplateBinding Value,
+                                                Mode=TwoWay}"
+                        VerticalAlignment="Stretch">
+                        <Slider.RenderTransform>
+                            <RotateTransform Angle="180" />
+                        </Slider.RenderTransform>
+                        <Slider.Styles>
+                            <Style Selector="Slider:vertical /template/ Thumb#thumb">
+                                <Setter Property="Theme" Value="{DynamicResource SliderThumbTheme}" />
+                                <Setter Property="Width" Value="50" />
+                                <Setter Property="Height" Value="50" />
+                                <Setter Property="RenderTransformOrigin" Value="50%,50%" />
+                                <Setter Property="RenderTransform">
+                                    <RotateTransform Angle="180" />
+                                </Setter>
+                            </Style>
+                        </Slider.Styles>
+
+                    </Slider>
+                </Grid>
+
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

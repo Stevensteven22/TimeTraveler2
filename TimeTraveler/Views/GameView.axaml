@@ -1,0 +1,134 @@
+﻿<UserControl
+    FontFamily="{StaticResource MyFont}"
+    Loaded="Control_OnLoaded"
+    d:DataContext="{Binding GameViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.GameView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:definitions="clr-namespace:TimeTraveler.Libary.Definitions;assembly=TimeTraveler.Libary"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:local="clr-namespace:TimeTraveler.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <Color x:Key="TitleColor">#d3bc8e</Color>
+        <Color x:Key="ContentColor">#b1aca4</Color>
+        <Color x:Key="ControlColor">#3f4555</Color>
+
+        <ControlTemplate TargetType="ContentControl" x:Key="FlameTemplate">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush Source="../Assets/火元素场景.png" Stretch="UniformToFill" />
+                </Grid.Background>
+                <Border Background="Black" Opacity="0.5" />
+                <userControls:FlameProgressBar
+                    ClickCommand="{Binding GoToResultViewCommand}"
+                    ClickCommandParameter="{x:Static definitions:ElementType.FireElemental}"
+                    HorizontalAlignment="Stretch"
+                    Margin="20"
+                    VerticalAlignment="Stretch" />
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate TargetType="ContentControl" x:Key="IceTemplate">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush Source="../Assets/冰元素场景.png" Stretch="UniformToFill" />
+                </Grid.Background>
+                <Border Background="Black" Opacity="0.5" />
+                <userControls:IceSlider
+                    ClickCommand="{Binding GoToResultViewCommand}"
+                    ClickCommandParameter="{x:Static definitions:ElementType.IceElemental}"
+                    HorizontalAlignment="Stretch"
+                    Margin="20"
+                    VerticalAlignment="Stretch" />
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="ContentControl" x:Key="WindTemplate">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush Source="../Assets/风元素场景.png" Stretch="UniformToFill" />
+                </Grid.Background>
+                <Border Background="Black" Opacity="0.5" />
+                <userControls:WindControl ClickCommand="{Binding GoToResultViewCommand}" ClickCommandParameter="{x:Static definitions:ElementType.WindElemental}" />
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="ContentControl" x:Key="RockTemplate">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush Source="../Assets/岩元素场景.png" Stretch="UniformToFill" />
+                </Grid.Background>
+                <Border Background="Black" Opacity="0.5" />
+                <userControls:RockControl ClickCommand="{Binding GoToResultViewCommand}" ClickCommandParameter="{x:Static definitions:ElementType.RockElemental}" />
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="ContentControl" x:Key="ThunderTemplate">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush Source="../Assets/雷元素场景.png" Stretch="UniformToFill" />
+                </Grid.Background>
+                <Border Background="Black" Opacity="0.5" />
+                <userControls:ThunderControl ClickCommand="{Binding GoToResultViewCommand}" ClickCommandParameter="{x:Static definitions:ElementType.ThunderElemental}" />
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Resources>
+
+    <UserControl.Styles />
+
+    <ContentControl Background="{StaticResource ControlColor}" x:Name="PART_GameControl">
+        <ContentControl.Content>
+
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    FontSize="50"
+                    Foreground="{StaticResource TitleColor}"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,20"
+                    Text="加载游戏中，请稍等..."
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Center" />
+                <ProgressBar
+                    CornerRadius="25"
+                    Foreground="{StaticResource ContentColor}"
+                    Grid.Row="1"
+                    Height="100"
+                    HorizontalAlignment="Stretch"
+                    IsIndeterminate="True"
+                    ShowProgressText="False"
+                    VerticalAlignment="Stretch" />
+            </Grid>
+
+
+        </ContentControl.Content>
+        <ContentControl.Styles>
+            <Style Selector="ContentControl.FireElemental">
+                <Setter Property="Template" Value="{StaticResource FlameTemplate}" />
+            </Style>
+            <Style Selector="ContentControl.IceElemental">
+                <Setter Property="Template" Value="{StaticResource IceTemplate}" />
+            </Style>
+            <Style Selector="ContentControl.WindElemental">
+                <Setter Property="Template" Value="{StaticResource WindTemplate}" />
+            </Style>
+            <Style Selector="ContentControl.RockElemental">
+                <Setter Property="Template" Value="{StaticResource RockTemplate}" />
+            </Style>
+            <Style Selector="ContentControl.ThunderElemental">
+                <Setter Property="Template" Value="{StaticResource ThunderTemplate}" />
+            </Style>
+        </ContentControl.Styles>
+    </ContentControl>
+
+</UserControl>

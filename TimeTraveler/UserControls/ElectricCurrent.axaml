@@ -1,0 +1,134 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:converters="clr-namespace:TimeTraveler.Converters"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <controls:ElectricCurrent Height="500" Width="1000" />
+    </Design.PreviewWith>
+    <Styles.Resources>
+        <SolidColorBrush Color="#ae8ebe" x:Key="ThunderColor" />
+        <converters:PercentValueToScaleConverter x:Key="PercentValueToScaleConverter" />
+        <converters:PercentValueToTranslateConverter x:Key="PercentValueToTranslateConverter" />
+    </Styles.Resources>
+    <Style Selector="controls|ElectricCurrent[IsCompleted=True] /template/ContentControl#PART_ContentControl">
+        <Setter Property="Template">
+            <ControlTemplate TargetType="ContentControl">
+                <Grid>
+                    <Image
+                        RenderTransformOrigin="0%,50%"
+                        Source="/Assets/电流.png"
+                        Stretch="UniformToFill">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                        <Image.Theme>
+                            <ControlTheme TargetType="Image">
+                                <ControlTheme.Animations>
+                                    <Animation
+                                        Duration="0:0:0.3"
+                                        IterationCount="INFINITE"
+                                        PlaybackDirection="Normal">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="Opacity" Value="0" />
+                                            <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="Opacity" Value="1" />
+                                            <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </ControlTheme.Animations>
+                            </ControlTheme>
+                        </Image.Theme>
+                    </Image>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="controls|ElectricCurrent[IsCompleted=False] /template/ContentControl#PART_ContentControl">
+        <Setter Property="RenderTransformOrigin" Value="0%,50%" />
+        <Setter Property="RenderTransform">
+            <TransformGroup>
+                <ScaleTransform />
+                <TranslateTransform />
+            </TransformGroup>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="ContentControl">
+                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle
+                        Fill="{TemplateBinding Background}"
+                        Height="{TemplateBinding Height}"
+                        Width="{TemplateBinding Width}" />
+                    <Path
+                        Data="M 0,0 L 40,20 L 0,40 Z"
+                        Fill="{TemplateBinding Background}"
+                        Grid.Column="1"
+                        RenderTransformOrigin="50%,50%">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="{Binding ArrowHeaderSize, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ElectricCurrent}, Converter={StaticResource PercentValueToScaleConverter}}" ScaleY="{Binding ArrowHeaderSize, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ElectricCurrent}, Converter={StaticResource PercentValueToScaleConverter}}" />
+                                <TranslateTransform X="{Binding ArrowHeaderSize, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ElectricCurrent}, Converter={StaticResource PercentValueToTranslateConverter}, ConverterParameter=20.0}" />
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Grid>
+
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^.IsShowed">
+            <Style.Animations>
+                <Animation Duration="0:0:1" PlaybackDirection="Normal">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="0" />
+                        <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="1" />
+                        <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+
+        </Style>
+    </Style>
+    <Style Selector="controls|ElectricCurrent">
+        <!--  Set Defaults  -->
+        <Setter Property="Background" Value="{StaticResource ThunderColor}" />
+        <Setter Property="Opacity" Value="0.7" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="controls:ElectricCurrent">
+                <Grid RenderTransformOrigin="50%,50%">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <SkewTransform AngleX="{Binding SkewAngleX, RelativeSource={RelativeSource TemplatedParent}}" AngleY="{Binding SkewAngleY, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <TranslateTransform X="{Binding OffsetX, RelativeSource={RelativeSource TemplatedParent}}" Y="{Binding OffsetY, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <RotateTransform Angle="{Binding RotationAngle, RelativeSource={RelativeSource TemplatedParent}}" CenterX="{Binding CenterX, RelativeSource={RelativeSource TemplatedParent}}" CenterY="{Binding CenterY, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <ScaleTransform ScaleX="{Binding ScaleX, RelativeSource={RelativeSource TemplatedParent}}" ScaleY="{Binding ScaleY, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+
+                    <ContentControl
+                        Background="{TemplateBinding Background}"
+                        Classes.IsShowed="{Binding IsShowed, RelativeSource={RelativeSource TemplatedParent}}"
+                        ClipToBounds="False"
+                        Height="{TemplateBinding ArrowBodyHeight}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="{TemplateBinding ArrowBodyWidth}"
+                        x:Name="PART_ContentControl" />
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

@@ -1,0 +1,148 @@
+﻿<UserControl
+    FontFamily="{StaticResource MyFont}"
+    d:DataContext="{Binding BackgroundViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.BackgroundView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:uc="using:TimeTraveler.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+
+        <!--  背景图片  -->
+        <Grid RenderTransformOrigin="50%,50%">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="0" Y="0" />
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.Styles>
+                <Style Selector="Grid">
+                    <Style.Animations>
+                        <Animation
+                            Duration="0:0:30"
+                            IterationCount="INFINITE"
+                            PlaybackDirection="Alternate">
+                            <KeyFrame Cue="0%">
+                                <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                                <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                            </KeyFrame>
+                            <KeyFrame Cue="100%">
+                                <Setter Property="ScaleTransform.ScaleX" Value="1.2" />
+                                <Setter Property="ScaleTransform.ScaleY" Value="1.2" />
+                            </KeyFrame>
+                        </Animation>
+                    </Style.Animations>
+                </Style>
+            </Grid.Styles>
+
+            <Image Source="\Assets\原神坊塔2.png" Stretch="UniformToFill" />
+
+            <Image
+                Source="\Assets\原神坊塔.png"
+                Stretch="UniformToFill"
+                d:Source="\Assets\原神坊塔.png">
+                <Image.Styles>
+                    <Style Selector="Image">
+                        <Style.Animations>
+                            <Animation
+                                Duration="0:0:20"
+                                IterationCount="INFINITE"
+                                PlaybackDirection="Alternate">
+                                <KeyFrame Cue="0%">
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Setter Property="Opacity" Value="1" />
+                                </KeyFrame>
+                                <KeyFrame Cue="45%">
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Setter Property="Opacity" Value="1" />
+                                </KeyFrame>
+                                <KeyFrame Cue="55%">
+                                    <Setter Property="Opacity" Value="0" />
+                                    <Setter Property="Opacity" Value="0" />
+                                </KeyFrame>
+                                <KeyFrame Cue="100%">
+                                    <Setter Property="Opacity" Value="0" />
+                                    <Setter Property="Opacity" Value="0" />
+                                </KeyFrame>
+                            </Animation>
+                        </Style.Animations>
+                    </Style>
+                </Image.Styles>
+            </Image>
+        </Grid>
+
+        <Border Background="Black" Opacity="0.3" />
+        <!--  标题  -->
+        <Label
+            Content="试炼之塔"
+            FontSize="50"
+            Foreground="#c7c0a6"
+            HorizontalAlignment="Center"
+            Margin="0,10,0,0" />
+
+        <uc:Door
+            ClickCommand="{Binding GoToGameViewCommand}"
+            ClickCommandParameter="FireElemental"
+            DoorElementType="FireElemental"
+            RenderTransformOrigin="0.5,0.5">
+            <uc:Door.RenderTransform>
+                <TranslateTransform X="-400" Y="-200" />
+            </uc:Door.RenderTransform>
+        </uc:Door>
+        <uc:Door
+            ClickCommand="{Binding GoToGameViewCommand}"
+            ClickCommandParameter="IceElemental"
+            DoorElementType="IceElemental"
+            RenderTransformOrigin="0.5,0.5">
+            <uc:Door.RenderTransform>
+                <TranslateTransform X="-400" Y="200" />
+            </uc:Door.RenderTransform>
+        </uc:Door>
+        <uc:Door
+            ClickCommand="{Binding GoToGameViewCommand}"
+            ClickCommandParameter="ThunderElemental"
+            DoorElementType="ThunderElemental"
+            RenderTransformOrigin="0.5,0.5">
+            <uc:Door.RenderTransform>
+                <TranslateTransform X="0" Y="0" />
+            </uc:Door.RenderTransform>
+        </uc:Door>
+        <uc:Door
+            ClickCommand="{Binding GoToGameViewCommand}"
+            ClickCommandParameter="WindElemental"
+            DoorElementType="WindElemental"
+            RenderTransformOrigin="0.5,0.5">
+            <uc:Door.RenderTransform>
+                <TranslateTransform X="400" Y="-200" />
+            </uc:Door.RenderTransform>
+        </uc:Door>
+        <uc:Door
+            ClickCommand="{Binding GoToGameViewCommand}"
+            ClickCommandParameter="RockElemental"
+            Clicked="Door_OnClicked"
+            DoorElementType="RockElemental"
+            RenderTransformOrigin="0.5,0.5">
+            <uc:Door.RenderTransform>
+                <TranslateTransform X="400" Y="200" />
+            </uc:Door.RenderTransform>
+        </uc:Door>
+
+        <Button
+            Classes="Primary"
+            Command="{Binding BackToResultCommand}"
+            CornerRadius="10"
+            HorizontalAlignment="Right"
+            IsVisible="{Binding IsGameCompleted, Mode=TwoWay}"
+            Theme="{DynamicResource BorderlessButton}"
+            VerticalAlignment="Top">
+            <u:Avatar IsHitTestVisible="False" Source="../Assets/double_right_96px.png" />
+        </Button>
+    </Grid>
+
+</UserControl>

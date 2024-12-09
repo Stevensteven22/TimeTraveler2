@@ -1,0 +1,321 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <controls:ChapterButton />
+    </Design.PreviewWith>
+
+    <Styles.Resources>
+        <!--<ImageBrush
+            Source="../Assets/RightUnSelected.png"
+            Stretch="Fill"
+            x:Key="UnSelectedImg" />
+        <ImageBrush
+            Source="../Assets/RightSelected.png"
+            Stretch="Fill"
+            x:Key="SelectedImg" />-->
+        <Color x:Key="SelectedColor">#1176F0</Color>
+        <Color x:Key="ToggleButtonDefaultIsOKBackground">#FF5AC262</Color>
+        <Color x:Key="ToggleButtonDefaultIsOKPointeroverBackground">#9dd7a3</Color>
+        <Color x:Key="ToggleButtonDefaultIsOKDisabledBackground">WhiteSmoke</Color>
+
+
+        <ControlTheme TargetType="ToggleButton" x:Key="{x:Type ToggleButton}">
+            <Setter Property="Background" Value="{DynamicResource ToggleButtonDefaultBackground}" />
+            <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+            <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDefaultPrimaryForeground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonDefaultBorderBrush}" />
+            <Setter Property="CornerRadius" Value="{DynamicResource ToggleButtonCornerRadius}" />
+            <Setter Property="BorderThickness" Value="{DynamicResource ToggleButtonBorderThickness}" />
+            <Setter Property="Padding" Value="{DynamicResource ButtonDefaultPadding}" />
+            <Setter Property="RenderTransform" Value="none" />
+            <Setter Property="FontSize" Value="{DynamicResource ToggleButtonDefaultFontSize}" />
+            <Setter Property="FontWeight" Value="{DynamicResource ToggleButtonDefaultFontWeight}" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="MinHeight" Value="{DynamicResource ButtonDefaultHeight}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border
+                        Background="Transparent"
+                        BorderBrush="{StaticResource SelectedColor}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        x:Name="PART_Border">
+
+                        <ContentPresenter
+                            Background="{TemplateBinding Background}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Padding="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"
+                            TextElement.FontSize="{TemplateBinding FontSize}"
+                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                            UseLayoutRounding="False"
+                            VerticalAlignment="Stretch"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            x:Name="PART_ContentPresenter" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+
+            <Style Selector="^:pressed">
+                <Setter Property="RenderTransform" Value="scale(0.98)" />
+            </Style>
+
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{DynamicResource ToggleButtonDefaultPointeroverBackground}" />
+            </Style>
+
+            <Style Selector="^:pressed">
+                <Setter Property="Background" Value="{DynamicResource ToggleButtonDefaultPressedBackground}" />
+            </Style>
+
+
+
+            <Style Selector="^:disabled">
+                <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonDefaultDisabledBorderBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ToggleButtonDefaultBackground}" />
+            </Style>
+
+            <Style Selector="^.Primary">
+                <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDefaultPrimaryForeground}" />
+            </Style>
+            <Style Selector="^.Secondary">
+                <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDefaultSecondaryForeground}" />
+            </Style>
+            <Style Selector="^.Tertiary">
+                <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDefaultTertiaryForeground}" />
+            </Style>
+            <Style Selector="^.Success">
+                <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDefaultSuccessForeground}" />
+            </Style>
+            <Style Selector="^.Warning">
+                <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDefaultWarningForeground}" />
+            </Style>
+            <Style Selector="^.Danger">
+                <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDefaultDangerForeground}" />
+            </Style>
+
+            <Style Selector="^:checked">
+                <Setter Property="Foreground" Value="{DynamicResource ToggleButtonCheckedForeground}" />
+                <Setter Property="Background" Value="{DynamicResource ToggleButtonPrimaryCheckedBackground}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryCheckedBorderBrush}" />
+                <Style Selector="^.Primary">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonPrimaryCheckedBackground}" />
+                </Style>
+                <Style Selector="^.Secondary">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonSecondaryCheckedBackground}" />
+                </Style>
+                <Style Selector="^.Tertiary">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonTertiaryCheckedBackground}" />
+                </Style>
+                <Style Selector="^.Success">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonSuccessCheckedBackground}" />
+                </Style>
+                <Style Selector="^.Warning">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonWarningCheckedBackground}" />
+                </Style>
+                <Style Selector="^.Danger">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonDangerCheckedBackground}" />
+                </Style>
+                <Style Selector="^:pointerover">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonPrimaryCheckedPointeroverBackground}" />
+                    <Style Selector="^.Primary">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonPrimaryCheckedPointeroverBackground}" />
+                    </Style>
+                    <Style Selector="^.Secondary">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonSecondaryCheckedPointeroverBackground}" />
+                    </Style>
+                    <Style Selector="^.Tertiary">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonTertiaryCheckedPointeroverBackground}" />
+                    </Style>
+                    <Style Selector="^.Success">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonSuccessCheckedPointeroverBackground}" />
+                    </Style>
+                    <Style Selector="^.Warning">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonWarningCheckedPointeroverBackground}" />
+                    </Style>
+                    <Style Selector="^.Danger">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonDangerCheckedPointeroverBackground}" />
+                    </Style>
+                </Style>
+                <Style Selector="^:pressed">
+                    <Setter Property="Foreground" Value="{DynamicResource ToggleButtonPrimaryCheckedPressedForeground}" />
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonPrimaryCheckedPressedBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryCheckedPressedBorderBrush}" />
+                    <Style Selector="^.Primary">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonPrimaryCheckedPressedBackground}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryCheckedPressedBorderBrush}" />
+                    </Style>
+                    <Style Selector="^.Secondary">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonSecondaryCheckedPressedBackground}" />
+                    </Style>
+                    <Style Selector="^.Tertiary">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonTertiaryCheckedPressedBackground}" />
+                    </Style>
+                    <Style Selector="^.Success">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonSuccessCheckedPressedBackground}" />
+                    </Style>
+                    <Style Selector="^.Warning">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonWarningCheckedPressedBackground}" />
+                    </Style>
+                    <Style Selector="^.Danger">
+                        <Setter Property="Background" Value="{DynamicResource ToggleButtonDangerCheckedPressedBackground}" />
+                    </Style>
+                </Style>
+                <Style Selector="^:disabled">
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonDefaultDisabledBorderBrush}" />
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonCheckedDisabledBackground}" />
+                </Style>
+            </Style>
+
+            <Style Selector="^:indeterminate">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryIndeterminateBorderBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ToggleButtonPrimaryIndeterminateBackground}" />
+                <Style Selector="^.Primary">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonPrimaryIndeterminateBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryIndeterminateBorderBrush}" />
+                </Style>
+                <Style Selector="^.Secondary">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonSecondaryIndeterminateBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonSecondaryIndeterminateBorderBrush}" />
+                </Style>
+                <Style Selector="^.Tertiary">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonTertiaryIndeterminateBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonTertiaryIndeterminateBorderBrush}" />
+                </Style>
+                <Style Selector="^.Success">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonSuccessIndeterminateBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonSuccessIndeterminateBorderBrush}" />
+                </Style>
+                <Style Selector="^.Warning">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonWarningIndeterminateBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonWarningIndeterminateBorderBrush}" />
+                </Style>
+                <Style Selector="^.Danger">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonDangerIndeterminateBackground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonDangerIndeterminateBorderBrush}" />
+                </Style>
+                <Style Selector="^:pointerover">
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryIndeterminatePointeroverBorderBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource ToggleButtonPrimaryIndeterminatePointeroverForeground}" />
+                    <Style Selector="^.Primary">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryIndeterminatePointeroverBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonPrimaryIndeterminatePointeroverForeground}" />
+                    </Style>
+                    <Style Selector="^.Secondary">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonSecondaryIndeterminatePointeroverBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonSecondaryIndeterminatePointeroverForeground}" />
+                    </Style>
+                    <Style Selector="^.Tertiary">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonTertiaryIndeterminatePointeroverBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonTertiaryIndeterminatePointeroverForeground}" />
+                    </Style>
+                    <Style Selector="^.Success">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonSuccessIndeterminatePointeroverBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonSuccessIndeterminatePointeroverForeground}" />
+                    </Style>
+                    <Style Selector="^.Warning">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonWarningIndeterminatePointeroverBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonWarningIndeterminatePointeroverForeground}" />
+                    </Style>
+                    <Style Selector="^.Danger">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonDangerIndeterminatePointeroverBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDangerIndeterminatePointeroverForeground}" />
+                    </Style>
+                </Style>
+                <Style Selector="^:pressed">
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryIndeterminatePressedBorderBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource ToggleButtonPrimaryIndeterminatePressedBorderBrush}" />
+                    <Style Selector="^.Primary">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonPrimaryIndeterminatePressedBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonPrimaryIndeterminatePressedForeground}" />
+                    </Style>
+                    <Style Selector="^.Secondary">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonSecondaryIndeterminatePressedBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonSecondaryIndeterminatePressedForeground}" />
+                    </Style>
+                    <Style Selector="^.Tertiary">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonTertiaryIndeterminatePressedBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonTertiaryIndeterminatePressedForeground}" />
+                    </Style>
+                    <Style Selector="^.Success">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonSuccessIndeterminatePressedBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonSuccessIndeterminatePressedForeground}" />
+                    </Style>
+                    <Style Selector="^.Warning">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonWarningIndeterminatePressedBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonWarningIndeterminatePressedForeground}" />
+                    </Style>
+                    <Style Selector="^.Danger">
+                        <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonDangerIndeterminatePressedBorderBrush}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDangerIndeterminatePressedForeground}" />
+                    </Style>
+                </Style>
+                <Style Selector="^:disabled">
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonIndeterminateDisabledBorderBrush}" />
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonDefaultBackground}" />
+                </Style>
+            </Style>
+
+            <Style Selector="^:disabled">
+                <Setter Property="Foreground" Value="{DynamicResource ToggleButtonDefaultDisabledForeground}" />
+                <Style Selector="^:checked">
+                    <Setter Property="Foreground" Value="{DynamicResource ToggleButtonCheckedDisabledForeground}" />
+                </Style>
+            </Style>
+
+            <Style Selector="^.Large">
+                <Setter Property="Padding" Value="{DynamicResource ButtonLargePadding}" />
+                <Setter Property="MinHeight" Value="{DynamicResource ButtonLargeHeight}" />
+            </Style>
+            <Style Selector="^.Small">
+                <Setter Property="Padding" Value="{DynamicResource ButtonSmallPadding}" />
+                <Setter Property="MinHeight" Value="{DynamicResource ButtonSmallHeight}" />
+            </Style>
+        </ControlTheme>
+
+        <ControlTheme
+            BasedOn="{StaticResource {x:Type ToggleButton}}"
+            TargetType="controls:ChapterButton"
+            x:Key="ChapterToggleButton">
+            <Style Selector="^:isOK">
+                <Setter Property="Background" Value="{StaticResource ToggleButtonDefaultIsOKBackground}" />
+                <Style Selector="^:pointerover">
+                    <Setter Property="Background" Value="{StaticResource ToggleButtonDefaultIsOKPointeroverBackground}" />
+                </Style>
+                <Style Selector="^:disabled">
+                    <Setter Property="Foreground" Value="{StaticResource ToggleButtonDefaultIsOKDisabledBackground}" />
+                </Style>
+                <Style Selector="^ /template/ Border#PART_Border">
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                </Style>
+            </Style>
+
+            <Style Selector="^:checked">
+                <Style Selector="^ /template/ Border#PART_Border">
+                    <Setter Property="Padding" Value="{TemplateBinding ButtonBorderPadding}" />
+                    <Setter Property="BorderThickness" Value="{TemplateBinding ButtonBorderThickness}" />
+                </Style>
+            </Style>
+
+        </ControlTheme>
+    </Styles.Resources>
+    <Style Selector="controls|ChapterButton">
+        <Setter Property="Theme" Value="{StaticResource ChapterToggleButton}" />
+        <Setter Property="CornerRadius" Value="15" />
+    </Style>
+</Styles>

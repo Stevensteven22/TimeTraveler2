@@ -1,0 +1,152 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:converters="clr-namespace:Ursa.Themes.Semi.Converters;assembly=Ursa.Themes.Semi"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <Styles.Resources>
+        <u:TimelineFormatConverter x:Key="FormatConverter" />
+
+
+        <converters:TimelineItemTypeToIconForegroundConverter
+            DefaultBrush="{DynamicResource DefaultTimelineIconForeground}"
+            ErrorBrush="{DynamicResource ErrorTimelineIconForeground}"
+            OngoingBrush="{DynamicResource OngoingTimelineIconForeground}"
+            SuccessBrush="{DynamicResource SuccessTimelineIconForeground}"
+            WarningBrush="{DynamicResource WarningTimelineIconForeground}"
+            x:Key="ForegroundConverter" />
+
+
+        <ControlTheme TargetType="controls:ChapterTimelineItem" x:Key="{x:Type controls:ChapterTimelineItem}">
+
+            <Setter Property="Template">
+                <ControlTemplate TargetType="controls:ChapterTimelineItem">
+                    <Grid
+                        ColumnDefinitions="Auto,Auto, Auto"
+                        Name="PART_RootGrid"
+                        RowDefinitions="*, *, *, *">
+                        <!--  Icon and Axis  -->
+                        <Grid
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Grid.Row="2"
+                            Name="PART_IconAxisRoot"
+                            VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Panel Grid.Column="0" Name="{x:Static u:TimelineItem.PART_Icon}">
+                                <ContentPresenter
+                                    Content="{TemplateBinding Icon}"
+                                    ContentTemplate="{TemplateBinding IconTemplate}"
+                                    HorizontalAlignment="Center"
+                                    Margin="8"
+                                    VerticalAlignment="Center" />
+                                <Ellipse
+                                    Fill="Gray"
+                                    Height="12"
+                                    IsVisible="False"
+                                    Margin="8"
+                                    Name="PART_DefaultIcon"
+                                    Width="12" />
+                            </Panel>
+                            <Rectangle
+                                Classes="end"
+                                Fill="{DynamicResource TimelineLineBrush}"
+                                Grid.Column="1"
+                                Height="3"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center" />
+                        </Grid>
+
+
+                        <ContentPresenter
+                            Content="{TemplateBinding Header}"
+                            ContentTemplate="{TemplateBinding HeaderTemplate}"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Foreground="{DynamicResource TimelineHeaderForeground}"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Margin="0,4"
+                            Name="{x:Static u:TimelineItem.PART_Header}"
+                            VerticalAlignment="Top" />
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Margin="0,2"
+                            Name="{x:Static u:TimelineItem.PART_Content}"
+                            TextElement.FontSize="12"
+                            VerticalAlignment="Top" />
+                        <StackPanel
+                            Grid.Column="0"
+                            Grid.Row="3"
+                            Margin="0,2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Top">
+                            <Image Source="../Assets/timer_32px.png" x:Name="PART_TimeIcon" />
+                            <TextBlock
+                                FontSize="12"
+                                Name="{x:Static u:TimelineItem.PART_Time}"
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource FormatConverter}">
+                                        <Binding Path="Time" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="TimeFormat" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+            <Style Selector="^:isOK /template/ Image#PART_TimeIcon">
+                <Setter Property="Source" Value="../Assets/time_span_32px.png" />
+            </Style>
+
+            <Style Selector="^:last /template/ Rectangle.end">
+                <Setter Property="Fill" Value="Transparent" />
+            </Style>
+            <Style Selector="^ /template/ TextBlock#PART_Time">
+                <Setter Property="Foreground" Value="{DynamicResource TextBlockTertiaryForeground}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_Content">
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBlockTertiaryForeground}" />
+            </Style>
+            <Style Selector="^:empty-icon /template/ Ellipse#PART_DefaultIcon">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^:empty-icon[Type=Default] /template/ Ellipse#PART_DefaultIcon">
+                <Setter Property="Fill" Value="{DynamicResource SemiGrey6}" />
+            </Style>
+            <Style Selector="^:empty-icon[Type=Error] /template/ Ellipse#PART_DefaultIcon">
+                <Setter Property="Fill" Value="{DynamicResource SemiRed6}" />
+            </Style>
+            <Style Selector="^:empty-icon[Type=Ongoing] /template/ Ellipse#PART_DefaultIcon">
+                <Setter Property="Fill" Value="{DynamicResource SemiBlue6}" />
+            </Style>
+            <Style Selector="^:empty-icon[Type=Success] /template/ Ellipse#PART_DefaultIcon">
+                <Setter Property="Fill" Value="{DynamicResource SemiGreen6}" />
+            </Style>
+            <Style Selector="^:empty-icon[Type=Warning] /template/ Ellipse#PART_DefaultIcon">
+                <Setter Property="Fill" Value="{DynamicResource SemiOrange6}" />
+            </Style>
+            <Style Selector="^:all-top" />
+            <Style Selector="^:all-bottom" />
+            <Style Selector="^:separate" />
+        </ControlTheme>
+
+
+    </Styles.Resources>
+    <Style Selector="controls|ChapterTimelineItem">
+        <Setter Property="Theme" Value="{StaticResource {x:Type controls:ChapterTimelineItem}}" />
+    </Style>
+</Styles>

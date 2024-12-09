@@ -1,0 +1,28 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Styles.Resources>
+        <ControlTheme
+            BasedOn="{StaticResource {x:Type u:Timeline}}"
+            TargetType="controls:ChapterTimeLine"
+            x:Key="{x:Type controls:ChapterTimeLine}">
+            <Setter Property="Template">
+                <ControlTemplate TargetType="controls:ChapterTimeLine">
+                    <ItemsPresenter>
+                        <ItemsPresenter.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="10" />
+                            </ItemsPanelTemplate>
+                        </ItemsPresenter.ItemsPanel>
+                    </ItemsPresenter>
+                </ControlTemplate>
+            </Setter>
+            <Setter Property="ItemContainerTheme" Value="{StaticResource {x:Type controls:ChapterTimelineItem}}" />
+        </ControlTheme>
+    </Styles.Resources>
+    <Style Selector="controls|ChapterTimeLine">
+        <Setter Property="Theme" Value="{StaticResource {x:Type controls:ChapterTimeLine}}" />
+    </Style>
+</Styles>

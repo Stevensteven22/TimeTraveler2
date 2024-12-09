@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="TimeTraveler/App.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Assets/Timer.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Assets/timer.xaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Dialogs/QuestionDialog.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Dialogs/ResultSelectorDialog.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Styles/Colors.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Styles/General.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Styles/GeneralStyle.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Styles/Notification.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/Battery.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/ChapterButton.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/ChapterTimeLine.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/ChapterTimeLineItem.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/Door.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/ElectricControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/ElectricCurrent.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/FlameProgressBar.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/Ice.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/IceSlider.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/OKButton.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/Rock.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/RockControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/ShowElementalControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/ThunderControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/UserControlsStyle.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/WindControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/Winnower.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/BackgroundView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/GameView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/InitializationView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/MainView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/MainWindow.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/ResultView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/ReturnView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

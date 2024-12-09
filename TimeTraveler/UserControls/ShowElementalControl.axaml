@@ -1,0 +1,156 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:TimeTraveler.UserControls"
+    xmlns:converters="clr-namespace:TimeTraveler.Converters"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <controls:ShowElementalControl />
+        <converters:ElementTypeToImageConverter x:Key="ElementTypeToImageConverter" />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|ShowElementalControl /template/Button#PART_Element">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Image
+                            Height="{TemplateBinding Height}"
+                            IsHitTestVisible="True"
+                            Source="{Binding ElementalImage, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:ShowElementalControl}, Converter={StaticResource ElementTypeToImageConverter}}"
+                            Stretch="UniformToFill"
+                            Width="{TemplateBinding Width}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="controls|ShowElementalControl">
+        <!--  Set Defaults  -->
+        <Setter Property="IsVisible" Value="{Binding IsShowEnabled, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="{x:Type controls:ShowElementalControl}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border
+                        Background="Black"
+                        Classes.Completed="{TemplateBinding IsShowEnabled}"
+                        Grid.RowSpan="2"
+                        Opacity="0.70"
+                        RenderTransformOrigin="100%,50%">
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <Border.Styles>
+                            <Style Selector="Border.Completed">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:1">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                        </Border.Styles>
+                    </Border>
+
+                    <Label
+                        Classes.Completed="{TemplateBinding IsShowEnabled}"
+                        Content="{Binding ElementalContentText, RelativeSource={RelativeSource TemplatedParent}, StringFormat='恭喜你的获得{0}元素的力量！点击它可获取元素！'}"
+                        FontSize="50"
+                        Foreground="#c7c0a6"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        RenderTransformOrigin="50%,50%"
+                        VerticalAlignment="Center">
+                        <Label.RenderTransform>
+                            <TranslateTransform />
+                        </Label.RenderTransform>
+                        <Label.Styles>
+                            <Style Selector="Label.Completed">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:2">
+                                        <KeyFrame KeyTime="0:0:0">
+                                            <Setter Property="Opacity" Value="0" />
+                                            <Setter Property="TranslateTransform.X" Value="300" />
+                                        </KeyFrame>
+                                        <KeyFrame KeyTime="0:0:1">
+                                            <Setter Property="Opacity" Value="0" />
+                                            <Setter Property="TranslateTransform.X" Value="300" />
+                                        </KeyFrame>
+                                        <KeyFrame KeyTime="0:0:2">
+                                            <Setter Property="Opacity" Value="1" />
+                                            <Setter Property="TranslateTransform.X" Value="0" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                        </Label.Styles>
+                    </Label>
+
+                    <Button
+                        Classes.Completed="{TemplateBinding IsShowEnabled}"
+                        Command="{TemplateBinding ClickCommand}"
+                        CommandParameter="{TemplateBinding ClickCommandParameter}"
+                        Grid.Row="1"
+                        Height="300"
+                        HorizontalAlignment="Center"
+                        RenderTransformOrigin="50%,50%"
+                        VerticalAlignment="Center"
+                        Width="300"
+                        x:Name="PART_Element">
+                        <Button.RenderTransform>
+                            <TranslateTransform X="0" Y="0" />
+                        </Button.RenderTransform>
+                        <Button.Styles>
+                            <Style Selector="Button">
+
+                                <Style.Animations>
+                                    <Animation
+                                        Duration="0:0:1"
+                                        IterationCount="INFINITE"
+                                        PlaybackDirection="Alternate">
+                                        <KeyFrame Cue="0%">
+                                            <Setter Property="TranslateTransform.Y" Value="0" />
+                                        </KeyFrame>
+                                        <KeyFrame Cue="100%">
+                                            <Setter Property="TranslateTransform.Y" Value="10" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+
+                            <Style Selector="Button.Completed">
+                                <Style.Animations>
+                                    <Animation Duration="0:0:2">
+                                        <KeyFrame KeyTime="0:0:0">
+                                            <Setter Property="Opacity" Value="0" />
+                                            <Setter Property="TranslateTransform.Y" Value="300" />
+                                        </KeyFrame>
+                                        <KeyFrame KeyTime="0:0:1">
+                                            <Setter Property="Opacity" Value="0" />
+                                            <Setter Property="TranslateTransform.Y" Value="300" />
+                                        </KeyFrame>
+                                        <KeyFrame KeyTime="0:0:2">
+                                            <Setter Property="Opacity" Value="1" />
+                                            <Setter Property="TranslateTransform.Y" Value="0" />
+                                        </KeyFrame>
+                                    </Animation>
+                                </Style.Animations>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

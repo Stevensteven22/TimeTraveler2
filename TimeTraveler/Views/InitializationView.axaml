@@ -1,0 +1,134 @@
+﻿<UserControl
+    FontFamily="{StaticResource MyFont}"
+    d:DataContext="{Binding InitializationViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.InitializationView"
+    x:DataType="vm:InitializationViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Background>
+        <ImageBrush
+            Opacity="1"
+            Source="\Assets\登陆界面.jpg"
+            Stretch="UniformToFill" />
+    </UserControl.Background>
+
+
+    <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="Initialized">
+            <ia:InvokeCommandAction Command="{Binding OnInitializedCommand}" />
+        </ia:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <ProgressBar
+            Height="100"
+            IsIndeterminate="True"
+            IsVisible="{Binding IsInitialized, Mode=OneWay}"
+            ShowProgressText="False"
+            Theme="{DynamicResource ProgressRing}"
+            Width="100" />
+        <TextBlock
+            FontSize="100"
+            FontWeight="Bold"
+            Foreground="White"
+            HorizontalAlignment="Center"
+            Margin="10"
+            Text=" 时间旅行者"
+            VerticalAlignment="Top" />
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            IsVisible="{Binding !IsInitialized, Mode=OneWay}"
+            Spacing="50"
+            VerticalAlignment="Top">
+
+            <Button
+                Classes="Primary"
+                Command="{Binding StartCommand}"
+                Content="开启游戏"
+                CornerRadius="10"
+                FontSize="30"
+                Margin="0,30,0,0"
+                Padding="40,20,40,20"
+                VerticalAlignment="Bottom">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            CornerRadius="20"
+                            Height="80"
+                            Padding="20"
+                            Width="200"
+                            x:Name="PART_ButtonBorder">
+                            <Border.Background>
+                                <ImageBrush
+                                    Opacity="0.5"
+                                    Source="\Assets\蓝底.jpg"
+                                    Stretch="UniformToFill" />
+                            </Border.Background>
+
+                            <TextBlock
+                                FontSize="30"
+                                Foreground="White"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalAlignment="Center" />
+
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button
+                Classes="Secondary"
+                Command="{Binding RestartCommand}"
+                Content="重新开启"
+                CornerRadius="10"
+                FontSize="30"
+                Padding="40,20,40,20"
+                VerticalAlignment="Bottom">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            CornerRadius="20"
+                            Height="80"
+                            Padding="20"
+                            Width="200"
+                            x:Name="PART_ButtonBorder">
+                            <Border.Background>
+                                <ImageBrush
+                                    Opacity="0.5"
+                                    Source="\Assets\蓝底.jpg"
+                                    Stretch="UniformToFill" />
+                            </Border.Background>
+
+                            <TextBlock
+                                FontSize="30"
+                                Foreground="White"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalAlignment="Center" />
+
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

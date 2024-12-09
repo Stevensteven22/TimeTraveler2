@@ -1,0 +1,76 @@
+﻿<UserControl
+    d:DataContext="{Binding ReturnViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.ReturnView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border>
+        <Border.Background>
+            <ImageBrush
+                Opacity="0.5"
+                Source="\Assets\返回窗口.jpg"
+                Stretch="UniformToFill" />
+        </Border.Background>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock
+                FontSize="26"
+                Foreground="#3f4555"
+                HorizontalAlignment="Center"
+                Margin="30"
+                Text=" 完成探险，无论成功与否，都要回到故事的起点。时间会带给你力量，让你重新站起来。时间之旅，是你生命的历程，也是你成长的历程。"
+                TextWrapping="Wrap" />
+
+            <Button
+                Background="#E9E5D9"
+                Command="{Binding GoBackHomeViewCommand}"
+                Content="返回章节"
+                Margin="30"
+                PointerEntered="Button_PointerEntered_1"
+                PointerExited="Button_PointerExited_2">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                            CornerRadius="80"
+                            Padding="20"
+                            Width="200"
+                            x:Name="PART_ButtonBorder">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="6*" />
+                                </Grid.ColumnDefinitions>
+                                <Border
+                                    Background="#3f4555"
+                                    CornerRadius="18"
+                                    Height="36"
+                                    Width="36">
+                                    <Ellipse
+                                        Fill="#3f4555"
+                                        Height="24"
+                                        Stroke="#CABD93"
+                                        StrokeThickness="3"
+                                        Width="24" />
+
+                                </Border>
+                                <TextBlock
+                                    FontSize="26"
+                                    Foreground="#3f4555"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+        </StackPanel>
+    </Border>
+</UserControl>
