@@ -146,8 +146,6 @@ public partial class GameThreeViewModel :ViewModelBase
             OnPropertyChanged(nameof(IsGameOver));  // 通知 UI 更新
             IsGameWon = false;
             OnPropertyChanged(nameof(IsGameWon));
-            
-            Console.WriteLine(_ball.Velocity+" reset velocity ball");
         }
         
 
@@ -183,8 +181,6 @@ public partial class GameThreeViewModel :ViewModelBase
         // 使用 RelayCommand 实现 FlapCommand
             FlapCommand = new RelayCommand(Flap);
             RestartCommand = new RelayCommand(ResetGame);
-            
-            Console.WriteLine(_ball.Velocity+"velocity ball");
         }
 
         public void DestoryElement(ElementPoint elementPoint)
@@ -332,9 +328,6 @@ public partial class GameThreeViewModel :ViewModelBase
             SetSuccessMessage();
             _ball.Velocity = 0; // 停止小球运动
             
-            try
-            {
-                
                 // 构建查询表达式
                 Expression<Func<ResultModel, bool>> predicate = model => model.Name == "风元素";
                 // 查询当前的风元素数据
@@ -361,16 +354,13 @@ public partial class GameThreeViewModel :ViewModelBase
                     var newCollection = new ObservableCollection<ResultModel> { newElement };
                     await _elementalService.InsertOrUpdateElementalAsync(newCollection);
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Failed to update wind element: {ex.Message}");
-            }
+            
+
         }
 
         public void SetSuccessMessage()
         {
-            Message = $"试炼成功！ 恭喜获得风元素{score}个";  
+            Message = $"试炼成功！ 闪避率提升{score}%";  
             IsGameWon = true;        // 更新游戏状态
         }
 
