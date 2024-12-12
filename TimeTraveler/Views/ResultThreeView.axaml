@@ -1,0 +1,123 @@
+﻿<UserControl
+    d:DataContext="{Binding ResultThreeViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.ResultThreeView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:cv="using:TimeTraveler.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="Loaded">
+            <ia:InvokeCommandAction Command="{Binding OnLoadedCommand}" />
+        </ia:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+    
+    <Border>
+        <Border.Background>
+            <ImageBrush
+                Opacity="0.5"
+                Source="\Assets\结果展示.jpg"
+                Stretch="UniformToFill" />
+        </Border.Background>
+        
+        
+        <i:Interaction.Behaviors>
+            <ia:DataTriggerBehavior Binding="{Binding IsOK}" Value="True">
+                <ia:ChangePropertyAction PropertyName="Background">
+                    <ia:ChangePropertyAction.Value>
+                        <ImageBrush
+                            Opacity="0.5"
+                            Source="\Assets\结果展示.jpg"
+                            Stretch="UniformToFill" />
+                    </ia:ChangePropertyAction.Value>
+                </ia:ChangePropertyAction>
+            </ia:DataTriggerBehavior>
+            <ia:DataTriggerBehavior Binding="{Binding IsOK}" Value="False">
+                <ia:ChangePropertyAction PropertyName="Background">
+                    <ia:ChangePropertyAction.Value>
+                        <ImageBrush
+                            Opacity="0.5"
+                            Source="\Assets\结果展示2.png"
+                            Stretch="UniformToFill" />
+                    </ia:ChangePropertyAction.Value>
+                </ia:ChangePropertyAction>
+            </ia:DataTriggerBehavior>
+        </i:Interaction.Behaviors>
+
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock
+                FontSize="26"
+                FontWeight="Bold"
+                Foreground="#3f4555"
+                HorizontalAlignment="Center"
+                Margin="30"
+                Text="{Binding Result}"
+                TextWrapping="Wrap">
+                <i:Interaction.Behaviors>
+                    <ia:DataTriggerBehavior Binding="{Binding IsOK}" Value="True">
+                        <ia:ChangePropertyAction PropertyName="Foreground" Value="#f4d8a8" />
+                    </ia:DataTriggerBehavior>
+                    <ia:DataTriggerBehavior Binding="{Binding IsOK}" Value="False">
+                        <ia:ChangePropertyAction PropertyName="Foreground" Value="#3f4555" />
+                    </ia:DataTriggerBehavior>
+                </i:Interaction.Behaviors>
+            </TextBlock>
+
+            <Button
+                Background="#E9E5D9"
+                Command="{Binding GoToReturnThreeViewCommand}"
+                Content="继续"
+                Margin="30"
+                PointerEntered="Button_PointerEntered_1"
+                PointerExited="Button_PointerExited_2">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                            CornerRadius="80"
+                            Padding="20"
+                            Width="200"
+                            x:Name="PART_ButtonBorder">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="6*" />
+                                </Grid.ColumnDefinitions>
+                                <Border
+                                    Background="#3f4555"
+                                    CornerRadius="18"
+                                    Height="36"
+                                    Width="36">
+                                    <Ellipse
+                                        Fill="#3f4555"
+                                        Height="24"
+                                        Stroke="#CABD93"
+                                        StrokeThickness="3"
+                                        Width="24" />
+
+                                </Border>
+                                <TextBlock
+                                    FontSize="26"
+                                    Foreground="#3f4555"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+        </StackPanel>
+
+        
+        
+    </Border>
+</UserControl>

@@ -51,6 +51,17 @@ public class ServiceLocator {
     public InitializationViewModel InitializationViewModel =>
         _serviceProvider.GetService<InitializationViewModel>();
     
+    public BackgroundThreeViewModel BackgroundThreeViewModel =>
+        _serviceProvider.GetService<BackgroundThreeViewModel>();
+    public GameThreeViewModel GameThreeViewModel =>
+        _serviceProvider.GetService<GameThreeViewModel>();
+    public ReturnThreeViewModel ReturnThreeViewModel =>
+        _serviceProvider.GetService<ReturnThreeViewModel>();
+    
+    public ResultThreeViewModel ResultThreeViewModel =>
+        _serviceProvider.GetService<ResultThreeViewModel>();
+
+    
     
     public ServiceLocator() {
         var serviceCollection = new ServiceCollection();
@@ -63,6 +74,10 @@ public class ServiceLocator {
         serviceCollection.AddSingleton<BackgroundViewModel>();
         serviceCollection.AddSingleton<ReturnViewModel>();
         serviceCollection.AddSingleton<ResultViewModel>();
+        serviceCollection.AddSingleton<BackgroundThreeViewModel>();
+        serviceCollection.AddSingleton<GameThreeViewModel>();
+        serviceCollection.AddSingleton<ReturnThreeViewModel>();
+        serviceCollection.AddSingleton<ResultThreeViewModel>();
 
 
         //Services
@@ -76,7 +91,8 @@ public class ServiceLocator {
         serviceCollection
             .AddSingleton<IResultVerifyService, ResultVerifyService>();
         serviceCollection.AddSingleton<IElementalService, ElementalService>();
-        
+        serviceCollection
+            .AddSingleton<IFlyService, FlyService>();
         //Others
        
         

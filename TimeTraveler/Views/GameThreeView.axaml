@@ -1,0 +1,218 @@
+﻿<UserControl
+    FontFamily="{StaticResource MyFont}"
+    d:DataContext="{Binding GameThreeViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.GameThreeView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:TimeTraveler.Converters">
+
+
+   <Canvas Focusable="True">
+        <Canvas.Background>
+            <ImageBrush Source="/Assets/飞行背景图.png" Stretch="UniformToFill" />
+        </Canvas.Background>
+        
+        <Image Source="/Assets/Flyer.png" 
+               Width="{Binding BallWidth}" 
+               Height="{Binding BallHeight}" 
+               Canvas.Left="{Binding BallX}" 
+               Canvas.Top="{Binding BallY}" />
+        <Rectangle Stroke="Red" StrokeThickness="2"
+                   Width="{Binding BallWidth}" 
+                   Height="{Binding BallHeight}" 
+                   Canvas.Left="{Binding BallX}" 
+                   Canvas.Top="{Binding BallY}" />
+
+
+        <Image Source="/Assets/神像2.png" 
+               Width="{Binding ObstacleWidth1}" 
+               Height="{Binding ObstacleHeight1}" 
+               Canvas.Left="{Binding ObstacleX1}" 
+               Canvas.Top="{Binding ObstacleY1}" />
+        <Rectangle Stroke="Red" StrokeThickness="2"
+                   Width="{Binding ObstacleWidth1}" 
+                   Height="{Binding ObstacleHeight1}" 
+                   Canvas.Left="{Binding ObstacleX1}" 
+                   Canvas.Top="{Binding ObstacleY1}" />
+        
+        <Image Source="/Assets/神像.png" 
+               Width="{Binding ObstacleWidth2}" 
+               Height="{Binding ObstacleHeight2}" 
+               Canvas.Left="{Binding ObstacleX2}" 
+               Canvas.Top="{Binding ObstacleY2}" />
+        <Rectangle Stroke="Red" StrokeThickness="2"
+                   Width="{Binding ObstacleWidth2}" 
+                   Height="{Binding ObstacleHeight2}" 
+                   Canvas.Left="{Binding ObstacleX2}" 
+                   Canvas.Top="{Binding ObstacleY2}" />
+        
+        <Image Source="/Assets/史莱姆.png" 
+               Width="{Binding ObstacleWidth3}" 
+               Height="{Binding ObstacleHeight3}" 
+               Canvas.Left="{Binding ObstacleX3}" 
+               Canvas.Top="{Binding ObstacleY3}" />
+        <Rectangle Stroke="Red" StrokeThickness="2"
+                   Width="{Binding ObstacleWidth3}" 
+                   Height="{Binding ObstacleHeight3}" 
+                   Canvas.Left="{Binding ObstacleX3}" 
+                   Canvas.Top="{Binding ObstacleY3}" />
+        
+        <Image Source="/Assets/激光.png" 
+               Width="{Binding ObstacleWidth4}" 
+               Height="{Binding ObstacleHeight4}" 
+               Canvas.Left="{Binding ObstacleX4}" 
+               Canvas.Top="{Binding ObstacleY4}" />
+        <Rectangle Stroke="Red" StrokeThickness="2"
+                   Width="{Binding ObstacleWidth4}" 
+                   Height="{Binding ObstacleHeight4}" 
+                   Canvas.Left="{Binding ObstacleX4}" 
+                   Canvas.Top="{Binding ObstacleY4}" />
+        
+        <Image Source="/Assets/风元素.png" 
+               Width="{Binding ElementPointWidth1}" 
+               Height="{Binding ElementPointHeight1}" 
+               Canvas.Left="{Binding ElementPointX1}" 
+               Canvas.Top="{Binding ElementPointY1}" />
+        <Rectangle Stroke="Red" StrokeThickness="2"
+                   Width="{Binding ElementPointWidth1}" 
+                   Height="{Binding ElementPointHeight1}" 
+                   Canvas.Left="{Binding ElementPointX1}" 
+                   Canvas.Top="{Binding ElementPointY1}" />
+        
+        <Image Source="/Assets/风元素.png" 
+               Width="{Binding ElementPointWidth2}" 
+               Height="{Binding ElementPointHeight2}" 
+               Canvas.Left="{Binding ElementPointX2}" 
+               Canvas.Top="{Binding ElementPointY2}" />
+        <Rectangle Stroke="Yellow" StrokeThickness="2"
+                   Width="{Binding ElementPointWidth2}" 
+                   Height="{Binding ElementPointHeight2}" 
+                   Canvas.Left="{Binding ElementPointX2}" 
+                   Canvas.Top="{Binding ElementPointY2}" />
+        
+        
+        <Canvas x:Name="GameOverPopup" 
+                IsVisible="{Binding IsGameOver}" 
+                Background="#80000000" 
+                Canvas.Left="380" 
+                Canvas.Top="250" 
+                Width="300" Height="200">
+            <Border BorderBrush="Wheat" 
+                    BorderThickness="2" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    Width="500" Height="300">
+                <Border.Background>
+                    <ImageBrush Source="/Assets/弹窗背景图.png" Stretch="UniformToFill"/>
+                </Border.Background>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="10">
+                    <TextBlock Text="试炼失败" 
+                               Foreground="White"
+                               FontSize="30" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center" />
+                    <Button Content="退出试炼" 
+                            Command="{Binding GoToResultThreeViewCommand}" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Margin="0,20,0,0"
+                            Width="100" >
+                        <Button.Styles>
+                            <Style Selector="Button">
+                                <Setter Property="Background" Value="Wheat" /> 
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontSize" Value="16" /> 
+                                <Setter Property="Padding" Value="10" /> 
+                                <Setter Property="CornerRadius" Value="10" />
+                                <Setter Property="BorderBrush" Value="White" /> 
+                                <Setter Property="BorderThickness" Value="2" /> 
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter Property="Height" Value="50" />
+                                <Setter Property="Width" Value="120" /> 
+                                <Setter Property="FontWeight" Value="Bold" /> 
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Canvas>
+
+        <Canvas x:Name="GameWonPopup" 
+                IsVisible="{Binding IsGameWon}" 
+                Background="#80000000" 
+                Canvas.Left="380" 
+                Canvas.Top="250" 
+                Width="300" Height="200">
+            <Border BorderBrush="Wheat" 
+                    BorderThickness="2" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    Width="500" Height="300">
+                <Border.Background>
+                    <ImageBrush Source="/Assets/弹窗背景图.png" Stretch="UniformToFill"/>
+                </Border.Background>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="10">
+                    <TextBlock Text="{Binding Message}"
+                               Foreground="White"
+                               FontSize="30" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center" />
+                    <Button Content="退出试炼" 
+                            Command="{Binding GoToResultThreeViewCommand}" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Margin="0,20,0,0"
+                            Width="100" >
+                        <Button.Styles>
+                            <Style Selector="Button">
+                                <Setter Property="Background" Value="Wheat" /> 
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontSize" Value="16" /> 
+                                <Setter Property="Padding" Value="10" /> 
+                                <Setter Property="CornerRadius" Value="10" />
+                                <Setter Property="BorderBrush" Value="White" /> 
+                                <Setter Property="BorderThickness" Value="2" /> 
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter Property="Height" Value="50" />
+                                <Setter Property="Width" Value="120" /> 
+                                <Setter Property="FontWeight" Value="Bold" /> 
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Canvas>
+
+<Button Content="Flap" 
+        Command="{Binding FlapCommand}" 
+        Canvas.Left="50" 
+        Canvas.Top="350">
+    <Button.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#58d5c9" /> 
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" /> 
+            <Setter Property="Padding" Value="10" /> 
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BorderBrush" Value="White" /> 
+            <Setter Property="BorderThickness" Value="2" /> 
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="120" /> 
+            <Setter Property="FontWeight" Value="Bold" /> 
+        </Style>
+    </Button.Styles>
+</Button>
+       
+    </Canvas>
+
+    
+</UserControl>

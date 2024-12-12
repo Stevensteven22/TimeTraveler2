@@ -39,6 +39,7 @@
                         </Animation>
                     </Style.Animations>
                 </Style>
+                
             </Grid.Styles>
 
             <Image Source="\Assets\原神坊塔2.png" Stretch="UniformToFill" />
