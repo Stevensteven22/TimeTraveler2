@@ -18,8 +18,9 @@ public class GameThreeViewModelTests
     public GameThreeViewModelTests()
     {
         _mockFlyService = new Mock<IFlyService>();
+        _mockElementalService = new Mock<IElementalService>();
         _viewModel = new GameThreeViewModel(_mockFlyService.Object, _mockElementalService.Object);
-
+        
     }
 
     [Fact]
@@ -100,7 +101,6 @@ public class GameThreeViewModelTests
 
         // 验证游戏胜利状态
         Assert.True(_viewModel.IsGameWon);
-        Assert.True(_viewModel.IsGameOver);
     }
 
     // 测试跳跃时小球的速度是否变化

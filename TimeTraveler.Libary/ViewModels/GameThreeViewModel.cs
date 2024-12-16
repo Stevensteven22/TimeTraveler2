@@ -205,7 +205,6 @@ public partial class GameThreeViewModel :ViewModelBase
             if (_isGameWon || _isGameOver)
             {
                 _ball.Velocity = 0;
-                Console.WriteLine(score+" score");
                 return; // 游戏结束，停止更新
             }
             _ball.UpdatePosition();
@@ -268,9 +267,8 @@ public partial class GameThreeViewModel :ViewModelBase
                 // 检查障碍物是否已经超出屏幕范围，避免不必要的计算
                 if (obstacle.X + obstacle.Width < 0) // 如果障碍物已经完全移出屏幕
                 {
-                    continue; // 跳过该障碍物
+                    continue; 
                 }
-
                 // 检查小球是否与障碍物的水平边界重叠
                 bool isBallInHorizontalRange = _ball.X + _ball.Width > obstacle.X && _ball.X < obstacle.X + obstacle.Width;
 
@@ -289,28 +287,19 @@ public partial class GameThreeViewModel :ViewModelBase
                 // 检查障碍物是否已经超出屏幕范围，避免不必要的计算
                 if (elementpoint.X + elementpoint.Width < 0) // 如果障碍物已经完全移出屏幕
                 {
-                    continue; // 跳过该障碍物
+                    continue; 
                 }
-
-                // 检查小球是否与障碍物的水平边界重叠
                 bool isBallInHorizontalRange = _ball.X + _ball.Width > elementpoint.X && _ball.X < elementpoint.X + elementpoint.Width;
-
-                // 检查小球是否与障碍物的垂直边界重叠
                 bool isBallInVerticalRange = _ball.Y + _ball.Height > elementpoint.Y && _ball.Y < elementpoint.Y + elementpoint.Height;
-
-                // 如果小球在水平和垂直范围内，则发生碰撞
                 if (isBallInHorizontalRange && isBallInVerticalRange)
                 {
                     score += 1; // 得分加一
                     DestoryElement(elementpoint);
-                    
                 }
             }
-            
             return false; 
         }
         
-        // 弹出游戏结束对话框（异步）
       
         // 游戏结束处理
         public async Task GameOver()

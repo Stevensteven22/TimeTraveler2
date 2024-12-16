@@ -35,15 +35,5 @@ public class Flyer
         Velocity = _flapStrength;
     }
 
-    // 碰撞检测：检查小球是否触底
-    public bool CheckCollision(double groundY)
-    {
-        if (Y + Height > groundY) // 检查是否触底
-        {
-            Y = groundY - Height; // 限制小球位置不掉出底部
-            Velocity = 0; // 停止下落
-            return true;
-        }
-        return false;
-    }
+
 }

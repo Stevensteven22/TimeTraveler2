@@ -45,23 +45,6 @@ public partial class ResultThreeViewModel : ViewModelBase
 
     public async Task OnLoadedAsync()
     {
-        /*// 创建一个 Random 对象
-        Random random = new Random();
-
-        // 生成一个随机的布尔值
-        IsOK = random.Next(2) == 1; // 0 或 1，0 对应 false，1 对应 true
-
-        if (IsOK)
-        {
-            WeakReferenceMessenger.Default.Send<object, string>(new object(), "OnGameSucceed");
-            Result = "Congratulations! You have succeeded.";
-        }
-        else
-        {
-            WeakReferenceMessenger.Default.Send<object, string>(new object(), "OnGameFailed");
-            Result = "Sorry, you have failed.";
-        }*/
-
         await Task.CompletedTask;
     }
 }
