@@ -28,4 +28,15 @@
   <ItemGroup>
     <ProjectReference Include="..\TimeTraveler.Libary\TimeTraveler.Libary.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\BackGround_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\Move.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

@@ -27,9 +27,9 @@ public static class ChapterNavigationConstant
         //扩展章节：在这里修改/添加章节的页面
         [2] = new List<ViewType>()
         {
-            ViewType.BackgroundView,
-            ViewType.GameView,
-            ViewType.ResultView,
+            ViewType.BackgroundTwoView,
+            ViewType.GameTwoView,
+            ViewType.ResultTwoView,
             ViewType.ReturnView,
         },
         [3] = new List<ViewType>()
@@ -66,7 +66,10 @@ public static class ChapterNavigationConstant
 public enum ViewType
 {
     BackgroundView,
+    BackgroundTwoView,
     GameView,
+    GameTwoView,
     ResultView,
+    ResultTwoView,
     ReturnView,
 }
