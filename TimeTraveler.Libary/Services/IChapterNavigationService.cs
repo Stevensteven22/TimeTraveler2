@@ -19,10 +19,10 @@ public static class ChapterNavigationConstant
     {
         [1] = new List<ViewType>()
         {           
-            ViewType.BackgroundThreeView,
-            ViewType.GameThreeView,
-            ViewType.ResultThreeView,
-            ViewType.ReturnThreeView,
+            ViewType.BackgroundView,
+            ViewType.GameView,
+            ViewType.ResultView,
+            ViewType.ReturnView,
         },
         //扩展章节：在这里修改/添加章节的页面
         [2] = new List<ViewType>()

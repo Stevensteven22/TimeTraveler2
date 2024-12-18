@@ -93,6 +93,7 @@ public class ServiceLocator {
         serviceCollection.AddSingleton<IElementalService, ElementalService>();
         serviceCollection
             .AddSingleton<IFlyService, FlyService>();
+        serviceCollection.AddSingleton<IAudioService, AudioService>();
         //Others
        
         

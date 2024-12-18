@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using System.Windows.Input;
-using Avalonia;
-using Avalonia.Controls;
+using Avalonia.Media;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using NAudio.Wave;
 using TimeTraveler.Libary.Definitions;
 using TimeTraveler.Libary.Models;
 using TimeTraveler.Libary.Services;
@@ -33,6 +33,9 @@ public partial class GameThreeViewModel :ViewModelBase
         private ElementPoint _elementPoint2;
         private string _message;
         private readonly IElementalService _elementalService;
+        private readonly IAudioService _audioService;
+
+
 
         
         
@@ -146,6 +149,8 @@ public partial class GameThreeViewModel :ViewModelBase
             OnPropertyChanged(nameof(IsGameOver));  // 通知 UI 更新
             IsGameWon = false;
             OnPropertyChanged(nameof(IsGameWon));
+            
+            _audioService.PlayBackgroundMusic();
         }
         
 
@@ -153,10 +158,11 @@ public partial class GameThreeViewModel :ViewModelBase
         public ICommand FlapCommand { get; }
         public ICommand RestartCommand { get; }
         
-        public GameThreeViewModel(IFlyService flyService,IElementalService elementalService)
+        public GameThreeViewModel(IFlyService flyService,IElementalService elementalService,IAudioService audioService)
         {
             _flyService = flyService;
             _elementalService = elementalService;
+            _audioService = audioService;
 
                 _ball = new Flyer(100, 100, 100, 100); // 初始化小球
                 _obstacle1 = new Obstacle(1200, 500, 100, 300);
@@ -166,6 +172,7 @@ public partial class GameThreeViewModel :ViewModelBase
                 _elementPoint1 = new ElementPoint(1250, 350, 50, 50);
                 _elementPoint2 = new ElementPoint(1250, 450, 50, 50);
 
+            
                 _timer = new DispatcherTimer
                 {
                     Interval = TimeSpan.FromMilliseconds(16) // 60FPS
@@ -199,6 +206,8 @@ public partial class GameThreeViewModel :ViewModelBase
       
         }
         
+        
+
         
         public void Update()
         {
@@ -305,6 +314,7 @@ public partial class GameThreeViewModel :ViewModelBase
         public async Task GameOver()
         {
             IsGameOver = true; // 设置游戏结束
+            _audioService.StopBackgroundMusic();
             _timer.Stop(); // 停止游戏更新
             _ball.Velocity = 0; // 停止小球运动
             
@@ -312,6 +322,7 @@ public partial class GameThreeViewModel :ViewModelBase
         
         public async void GameWon()
         {
+            _audioService.StopBackgroundMusic();
             IsGameWon = true; // 设置游戏胜利
             _timer.Stop(); // 停止游戏更新
             SetSuccessMessage();
@@ -358,6 +369,7 @@ public partial class GameThreeViewModel :ViewModelBase
         public void Flap()
         {
             if (_isGameWon || _isGameOver) return; // 游戏结束时，禁用跳跃
+           _audioService.PlayFlapSound();
             _ball.Flap();
             OnPropertyChanged(nameof(BallY));  // 触发跳跃时更新Y位置
         }

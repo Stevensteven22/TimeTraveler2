@@ -12,6 +12,7 @@ public class GameThreeViewModelTests
 {
     private readonly Mock<IFlyService> _mockFlyService;
     private readonly Mock<IElementalService> _mockElementalService;
+    private readonly Mock<IAudioService> _mockAudioService;
     private readonly GameThreeViewModel _viewModel;
 
 
@@ -19,7 +20,7 @@ public class GameThreeViewModelTests
     {
         _mockFlyService = new Mock<IFlyService>();
         _mockElementalService = new Mock<IElementalService>();
-        _viewModel = new GameThreeViewModel(_mockFlyService.Object, _mockElementalService.Object);
+        _viewModel = new GameThreeViewModel(_mockFlyService.Object, _mockElementalService.Object, _mockAudioService.Object);
         
     }
 
