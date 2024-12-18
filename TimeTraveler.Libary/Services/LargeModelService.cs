@@ -13,7 +13,7 @@ public class LargeModelService : ILargeModelService
     private const string TokenUrl = "https://aip.baidubce.com/oauth/2.0/token";
     private const string ApiUrl = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro";
 
-    // 获取 AccessToken
+    // 获取 AccessToken..
     public string GetAccessToken()
     {
         var client = new RestClient(TokenUrl);
