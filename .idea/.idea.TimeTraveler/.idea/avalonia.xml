@@ -30,11 +30,14 @@
         <entry key="TimeTraveler/UserControls/UserControlsStyle.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/WindControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/Winnower.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/BackgroundFourView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/BackgroundView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/GameFourView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/GameView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/InitializationView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/MainView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/MainWindow.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/ResultFourView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/ResultView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/ReturnView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
       </map>
