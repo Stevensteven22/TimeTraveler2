@@ -29,7 +29,7 @@ public class GameTwoViewModel : ViewModelBase
     public int _playerY;
     public bool isOK = false;
     private List<Buff> List = new List<Buff>();
-    private string theme = null;
+    public string theme = null;
     private Puzzle _currentPuzzle;
     private string _reply;
 
@@ -126,7 +126,7 @@ public class GameTwoViewModel : ViewModelBase
     }
 
     //弹窗控制
-    private void changeviable()
+    public void changeviable()
     {
         this.IsPopupVisuale = true;
     }
@@ -596,7 +596,7 @@ public class GameTwoViewModel : ViewModelBase
     
     private IRelayCommand GetPuzzleCommand { get; }
 
-    private void Quit()
+    public void Quit()
     {
         this.isOK = false;
         Delect();
@@ -605,7 +605,7 @@ public class GameTwoViewModel : ViewModelBase
         StartNewGame();
     }
 
-    private void Restart()
+    public void Restart()
     {
         this.isOK = false;
         Delect();
