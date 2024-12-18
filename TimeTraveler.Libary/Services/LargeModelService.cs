@@ -64,7 +64,7 @@ public class LargeModelService : ILargeModelService
     }
 
     // 解析 API 返回的 JSON 并返回 Puzzle 对象
-    static Puzzle ParseResponse(string responseContent)
+    public static Puzzle ParseResponse(string responseContent)
 {
     try
     {
@@ -105,7 +105,7 @@ public class LargeModelService : ILargeModelService
 }
 
 // 提取选项的方法
-static string[] ExtractOptions(string questionAndOptions)
+public static string[] ExtractOptions(string questionAndOptions)
 {
     // 假设选项的格式为 "A:选项1 B:选项2 C:选项3"
     var optionMatches = Regex.Matches(questionAndOptions, @"[A-Z]:[^A-Z]+(?=\s[A-Z]:|$)");
@@ -113,7 +113,7 @@ static string[] ExtractOptions(string questionAndOptions)
 }
 
 // 提取问题的方法
-static string ExtractQuestion(string questionAndOptions)
+public static string ExtractQuestion(string questionAndOptions)
 {
     // 假设问题在选项之前，用正则提取选项部分之前的内容
     var match = Regex.Match(questionAndOptions, @"^(.*?)(?=\s[A-Z]:)");
@@ -121,7 +121,7 @@ static string ExtractQuestion(string questionAndOptions)
 }
 
 // 提取正确答案的方法
-static string ExtractCorrectAnswer(string correctAnswerAndExplanation)
+public static string ExtractCorrectAnswer(string correctAnswerAndExplanation)
 {
     // 正确答案一般是冒号后的单个字母
     var match = Regex.Match(correctAnswerAndExplanation, @"^[A-Z]");
@@ -129,7 +129,7 @@ static string ExtractCorrectAnswer(string correctAnswerAndExplanation)
 }
 
 // 提取解释的方法
-static string ExtractExplanation(string correctAnswerAndExplanation, string correctAnswer)
+public static string ExtractExplanation(string correctAnswerAndExplanation, string correctAnswer)
 {
     // 解释是正确答案之后的部分
     return correctAnswerAndExplanation.Substring(correctAnswer.Length).Trim();
