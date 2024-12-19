@@ -88,6 +88,8 @@ public class ServiceLocator {
             .AddSingleton<IPreferenceStorage, FilePreferenceStorage>();
         serviceCollection
             .AddSingleton<IResultVerifyService, ResultVerifyService>();
+        serviceCollection
+            .AddSingleton<IResultVerifyFourService, ResultVerifyFourService>();
         serviceCollection.AddSingleton<IElementalService, ElementalService>();
         
         //Others
