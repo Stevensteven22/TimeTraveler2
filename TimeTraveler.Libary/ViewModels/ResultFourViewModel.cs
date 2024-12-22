@@ -27,7 +27,8 @@ public partial class ResultFourViewModel : ViewModelBase
             if (message is bool isSucceed && isSucceed)
             {
                 IsOK = true;
-                Result = "  **悬念**:记忆里的这些人到底是谁?他们为什么会出现在记忆里?找到他们会不会解开所有谜题?";
+                Result = "                                         恭喜你获得了圣遗物, 获得岩元素之力，防御力+10%                                                    " +
+                         "**悬念**:记忆里的这些人到底是谁?他们为什么会出现在记忆里?找到他们会不会解开所有谜题?";
                 WeakReferenceMessenger.Default.Send<object, string>(new object(), "OnGameSucceed");
             }else 
             {
