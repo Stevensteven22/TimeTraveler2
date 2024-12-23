@@ -60,11 +60,7 @@ public class MazeService : IMazeService
 
     public string GetMazeRepresentation()
     {
-        if (_maze == null)
-        {
-            // Return an empty maze or default value if _maze is not initialized
-            return string.Empty;
-        }
+   
 
         var sb = new StringBuilder();
         for (int i = 0; i < _maze.GetLength(0); i++)
