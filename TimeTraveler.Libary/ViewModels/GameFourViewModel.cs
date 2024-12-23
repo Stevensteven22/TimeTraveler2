@@ -13,7 +13,7 @@ namespace TimeTraveler.Libary.ViewModels
 {
     public partial class GameFourViewModel : ViewModelBase
     {
-        private readonly IResultVerifyFourService _resultVerifyFourService;
+        private readonly IResultVerifyService _resultVerifyService;
         
         //当前是第几个选择
         private int _currentorder;
@@ -93,11 +93,11 @@ namespace TimeTraveler.Libary.ViewModels
         //操作指令
         public IRelayCommand OnAvatarClickCommand { get; }
         // 构造函数
-        public GameFourViewModel(IResultVerifyFourService resultVerifyFourService)
+        public GameFourViewModel(IResultVerifyService resultVerifyService)
         {
             Imagesuccess = false;
             _currentorder = 0;
-            _resultVerifyFourService = resultVerifyFourService;
+            _resultVerifyService = resultVerifyService;
             InitializeAvatars();
             GameStatus = "请按照顺序点击头像!";
             OnAvatarClickCommand = new RelayCommand<string>(OnAvatarClick);
