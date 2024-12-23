@@ -1,0 +1,229 @@
+﻿<UserControl
+    FontFamily="{StaticResource MyFont}"
+    d:DataContext="{Binding GameFourViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.GameFourView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.Resources>
+        <!-- 游戏界面颜色资源 -->
+        <Color x:Key="TitleColor">#d3bc8e</Color>
+        <Color x:Key="ContentColor">#b1aca4</Color>
+        <Color x:Key="ControlColor">#3f4555</Color>
+    </UserControl.Resources>
+    <Border>
+        <Border.Background>
+            <ImageBrush
+                Opacity="1"
+                Source="/Assets/Game4.jpg"
+                Stretch="UniformToFill" />
+        </Border.Background>
+
+        <StackPanel>
+        <!-- 四个提示文本 -->
+        <TextBlock Text="{Binding GameStatus}" FontSize="18" HorizontalAlignment="Center" Margin="10"/>
+        <TextBlock Text="点击顺序：" FontSize="16" HorizontalAlignment="Center" Margin="10"/>
+        <!--<Image Source="/Assets/SuccessImage.png"   
+               Width="400"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Height="400"
+               Margin="20"
+               ZIndex="100"/> -->
+         
+        <!-- 9宫格头像 -->
+        <Grid>
+        <Grid ColumnDefinitions="*,*,*">
+            <!--提示-->
+            <Grid Grid.Column="0" RowDefinitions="*,*">
+                <StackPanel Grid.Row="0" MinWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Opacity="0.6">
+                    <StackPanel.Clip>
+                        <RectangleGeometry RadiusX="30" RadiusY="30" Rect="0,0,200,240"/> 
+                    </StackPanel.Clip>
+                    <Border BorderBrush="White" BorderThickness="1.5" Padding="10" CornerRadius="30">
+                    <StackPanel>
+                    <Label FontSize="25" HorizontalAlignment="Center" Padding="0,10,0,10">提示1</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">谜面：</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">身披紫电不染尘，</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">执掌天理问乾坤。</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">昔日稻香梦中逝，</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,30">今朝刀光守永恒。</Label>
+                    </StackPanel>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="1" MinWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Opacity="0.6">
+                    <StackPanel.Clip>
+                        <RectangleGeometry RadiusX="30" RadiusY="30" Rect="0,0,200,240"/> 
+                    </StackPanel.Clip>
+                    <Border BorderBrush="White" BorderThickness="1.5" Padding="10" CornerRadius="30">
+                        <StackPanel>
+                            <Label FontSize="25" HorizontalAlignment="Center" Padding="0,10,0,10">提示2</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">谜面：</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">波光粼粼水中影，</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">心怀大海情似鲸。</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">统领军民谋良策，</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,30">珊瑚彼岸渡浮生。</Label>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+             <Grid Grid.Column="2" RowDefinitions="*,*">
+                <StackPanel Grid.Row="0" MinWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Opacity="0.6">
+                    <StackPanel.Clip>
+                        <RectangleGeometry RadiusX="30" RadiusY="30" Rect="0,0,200,240"/> 
+                    </StackPanel.Clip>
+                    <Border BorderBrush="White" BorderThickness="1.5" Padding="10" CornerRadius="30">
+                    <StackPanel>
+                    <Label FontSize="25" HorizontalAlignment="Center" Padding="0,10,0,10">提示3</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">谜面：</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">莲步轻移曼妙舞，</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">電裳映月水中书,。</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">碧海生烟芳华现，</Label>
+                    <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,30">繁星点点梦如初。</Label>
+                    </StackPanel>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="1" MinWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Opacity="0.6">
+                    <StackPanel.Clip>
+                        <RectangleGeometry RadiusX="30" RadiusY="30" Rect="0,0,200,240"/> 
+                    </StackPanel.Clip>
+                    <Border BorderBrush="White" BorderThickness="1.5" Padding="10" CornerRadius="30">
+                        <StackPanel>
+                            <Label FontSize="25" HorizontalAlignment="Center" Padding="0,10,0,10">提示4</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">谜面：</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">守护夜晚干灯影，</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">孤身独行不问名。</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,0">一声箫韵惊魍魉，</Label>
+                            <Label FontSize="18" HorizontalAlignment="Left" Padding="20,5,0,30">谁知心底藏伤情。</Label>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+            <!--人物头像-->
+            <UniformGrid Grid.Column="1" Rows="3" Columns="3" HorizontalAlignment="Center" Margin="20" Height="500" Width="500">
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="0" Padding="10" Background="{Binding Button1Color}">
+                    <Image Source="{Binding Avatars[0].Image}" Stretch="UniformToFill" />
+                </Button>
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="1" Padding="10" Background="{Binding Button2Color}">
+                    <Image Source="{Binding Avatars[1].Image}" Stretch="UniformToFill" />
+                </Button>
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="2" Padding="10" Background="{Binding Button3Color}">
+                    <Image Source="{Binding Avatars[2].Image}" Stretch="UniformToFill" />
+                </Button>
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="3" Padding="10" Background="{Binding Button4Color}">
+                    <Image Source="{Binding Avatars[3].Image}" Stretch="UniformToFill" />
+                </Button>
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="4" Padding="10" Background="{Binding Button5Color}">
+                    <Image Source="{Binding Avatars[4].Image}" Stretch="UniformToFill" />
+                </Button>
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="5" Padding="10" Background="{Binding Button6Color}">
+                    <Image Source="{Binding Avatars[5].Image}" Stretch="UniformToFill" />
+                </Button>
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="6" Padding="10" Background="{Binding Button7Color}">
+                    <Image Source="{Binding Avatars[6].Image}" Stretch="UniformToFill" />
+                </Button>
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="7" Padding="10" Background="{Binding Button8Color}">
+                    <Image Source="{Binding Avatars[7].Image}" Stretch="UniformToFill" />
+                </Button>
+                <Button Command="{Binding OnAvatarClickCommand}" CommandParameter="8" Padding="10" Background="{Binding Button9Color}">
+                    <Image Source="{Binding Avatars[8].Image}" Stretch="UniformToFill" />
+                </Button>
+            </UniformGrid>
+        </Grid>
+            <!--显示成功的图案-->
+             <u:Avatar      IsVisible="{Binding Imagesuccess}"
+                            Classes="Square"
+                            CornerRadius="10"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,0"
+                            Opacity="0.8"
+                            Source="/Assets/SuccessImage.png"
+                            Width="500"
+                            Height="500">
+                            <u:Avatar.Styles>
+                                <Style Selector="u|Avatar">
+                                    <Style Selector="^:pointerover">
+                                        <Setter Property="RenderTransform" Value="scale(1.1)" />
+                                    </Style>
+                                    <Style.Animations>
+                                        <Animation
+                                            Duration="0:0:1"
+                                            IterationCount="INFINITE"
+                                            PlaybackDirection="Alternate">
+                                            <KeyFrame Cue="0%">
+                                                <Setter Property="ScaleTransform.ScaleX" Value="1.05" />
+                                                <Setter Property="ScaleTransform.ScaleY" Value="1.05" />
+                                            </KeyFrame>
+                                            <KeyFrame Cue="100%">
+                                                <Setter Property="ScaleTransform.ScaleX" Value="0.95" />
+                                                <Setter Property="ScaleTransform.ScaleY" Value="0.95" />
+                                            </KeyFrame>
+                                        </Animation>
+                                    </Style.Animations>
+                                </Style>
+                            </u:Avatar.Styles>
+                            <u:Avatar.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Duration="0:0:0.5" Property="RenderTransform" />
+                                </Transitions>
+                            </u:Avatar.Transitions>
+                        </u:Avatar>
+        </Grid>
+        <!-- 跳转按钮 -->
+         <Button
+                        Background="#E9E5D9"
+                        Command="{Binding GoToResultViewCommand}"
+                        Content="提交答案"
+                        PointerEntered="Button_PointerEntered_1"
+                        PointerExited="Button_PointerExited_2"
+                        Margin="0,0,0,0"
+                        VerticalAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border
+                                    Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CornerRadius="80"
+                                    Padding="20"
+                                    Width="200"
+                                    x:Name="PART_ButtonBorder">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="6*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border
+                                            Background="#3f4555"
+                                            CornerRadius="18"
+                                            Height="36"
+                                            Width="36">
+                                            <Ellipse
+                                                Fill="#3f4555"
+                                                Height="24"
+                                                Stroke="#CABD93"
+                                                StrokeThickness="3"
+                                                Width="24" />
+
+                                        </Border>
+                                        <TextBlock
+                                            FontSize="26"
+                                            Foreground="#3f4555"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                            VerticalAlignment="Center" />
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+    </StackPanel>
+    </Border>
+</UserControl>
