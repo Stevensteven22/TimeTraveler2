@@ -41,9 +41,9 @@ public static class ChapterNavigationConstant
         },
         [4] = new List<ViewType>()
         {
-            ViewType.BackgroundFourView,
-            ViewType.GameFourView,
-            ViewType.ResultFourView,
+            ViewType.BackgroundView,
+            ViewType.GameView,
+            ViewType.ResultView,
             ViewType.ReturnView,
         },
         [5] = new List<ViewType>()
@@ -66,10 +66,7 @@ public static class ChapterNavigationConstant
 public enum ViewType
 {
     BackgroundView,
-    BackgroundFourView,
     GameView,
-    GameFourView,
     ResultView,
-    ResultFourView,
     ReturnView,
 }

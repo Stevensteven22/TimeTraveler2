@@ -12,11 +12,8 @@ public class ChapterNavigationService : IChapterNavigationService
         ViewModelBase viewModel = view switch
         {
             ViewType.BackgroundView => ServiceLocator.Current.BackgroundViewModel,
-            ViewType.BackgroundFourView => ServiceLocator.Current.BackgroundFourViewModel,
             ViewType.GameView => ServiceLocator.Current.GameViewModel,
-            ViewType.GameFourView => ServiceLocator.Current.GameFourViewModel,
             ViewType.ResultView => ServiceLocator.Current.ResultViewModel,
-            ViewType.ResultFourView => ServiceLocator.Current.ResultFourViewModel,
             ViewType.ReturnView => ServiceLocator.Current.ReturnViewModel,
             //在这里扩展章节：继续添加要导航的页面
             _ => throw new Exception("未知的视图。"),
