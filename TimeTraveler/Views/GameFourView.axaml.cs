@@ -11,7 +11,6 @@ namespace TimeTraveler.Views
         public GameFourView()
         {
             InitializeComponent();
-            this.DataContext = new GameFourViewModel(new ResultVerifyFourService()); // 根据实际的验证服务传入
         }
 
         private void InitializeComponent()

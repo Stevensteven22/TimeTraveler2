@@ -1,10 +1,12 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using TimeTraveler.Libary.Definitions;
 using TimeTraveler.Libary.Helpers;
 using TimeTraveler.Libary.Services;
 using TimeTraveler.Libary.Models;
@@ -14,6 +16,7 @@ namespace TimeTraveler.Libary.ViewModels
     public partial class GameFourViewModel : ViewModelBase
     {
         private readonly IResultVerifyFourService _resultVerifyFourService;
+        private readonly IElementalService _elementalService;
         
         //当前是第几个选择
         private int _currentorder;
@@ -93,8 +96,10 @@ namespace TimeTraveler.Libary.ViewModels
         //操作指令
         public IRelayCommand OnAvatarClickCommand { get; }
         // 构造函数
-        public GameFourViewModel(IResultVerifyFourService resultVerifyFourService)
+        public GameFourViewModel(IResultVerifyFourService resultVerifyFourService, IElementalService elementalService)
         {
+            
+            _elementalService = elementalService;
             Imagesuccess = false;
             _currentorder = 0;
             _resultVerifyFourService = resultVerifyFourService;
@@ -182,10 +187,39 @@ namespace TimeTraveler.Libary.ViewModels
             }
         }
         // 检查玩家点击的顺序
-        private void CheckOrder()
+        private async void  CheckOrder()
         {
             if (_selectedOrder.SequenceEqual(_correctOrder))
             {
+                Console.WriteLine("111");
+                // 构建查询表达式
+                Expression<Func<ResultModel, bool>> predicate = model => model.Name == "风元素";
+                // 查询当前的风元素数据
+                ResultModel windElement = await _elementalService.GetElementalAsync(predicate);
+                Console.WriteLine("222");
+                if (windElement != null)
+                {
+                    // 更新风元素的值
+                    windElement.IsSelected = true;
+                    windElement.ImprovedValue1 += 10;
+                    var updatedCollection = new ObservableCollection<ResultModel> { windElement };
+                    await _elementalService.InsertOrUpdateElementalAsync(updatedCollection);
+                }
+                else
+                {
+                    // 如果不存在风元素数据，插入新数据
+                    var newElement = new ResultModel()
+                    {
+                        Id = 2,
+                        Name = "风元素",
+                        ResultElementType = ElementType.WindElemental,
+                        ImprovedValue1 = 10,
+                        IsSelected = true
+                    };
+                    var newCollection = new ObservableCollection<ResultModel> { newElement };
+                    await _elementalService.InsertOrUpdateElementalAsync(newCollection);
+                }
+                
                 // 如果顺序正确，显示正确的图案
                 GameStatus = "恭喜你完成任务！";
                 ShowResultImage();
