@@ -191,10 +191,12 @@ namespace TimeTraveler.Libary.ViewModels
         {
             if (_selectedOrder.SequenceEqual(_correctOrder))
             {
+                Console.WriteLine("111");
                 // 构建查询表达式
                 Expression<Func<ResultModel, bool>> predicate = model => model.Name == "风元素";
                 // 查询当前的风元素数据
                 ResultModel windElement = await _elementalService.GetElementalAsync(predicate);
+                Console.WriteLine("222");
                 if (windElement != null)
                 {
                     // 更新风元素的值
