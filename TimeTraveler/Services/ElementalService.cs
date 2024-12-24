@@ -98,7 +98,6 @@ public class ElementalService : IElementalService
                 switch (resultModel.ResultElementType)
                 {
                     case ElementType.FireElemental:
-<<<<<<< HEAD
                         existingBuff.Value2 =
                             existingBuff.Value2 * (1.0d + (resultModel.ImprovedValue2 / 100.0d));
                         await _buffStorage.SaveBuffsAsync(existingBuff);
@@ -119,7 +118,7 @@ public class ElementalService : IElementalService
                         break;
                     case ElementType.WindElemental:
                         existingBuff.Value1 = existingBuff.Value1 + resultModel.ImprovedValue1;
-=======
+                        break;
                        
                    
                   
