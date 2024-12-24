@@ -21,6 +21,11 @@ public partial class BackgroundFourView : UserControl
             button.Background = Brushes.AliceBlue;
 
 
+            button.Background = Brushes.Black;
+
+
+
+            button.Background = Brushes.AliceBlue;
         }
     }
 
