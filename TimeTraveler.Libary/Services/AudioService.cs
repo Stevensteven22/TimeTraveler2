@@ -1,4 +1,7 @@
-﻿using NAudio.Wave;
+﻿using Avalonia.Platform;
+using Avalonia;
+using NAudio.Wave;
+using System.Reflection;
 
 namespace TimeTraveler.Libary.Services;
 
@@ -16,8 +19,10 @@ public class AudioService : IAudioService
         _mp3FileReader?.Dispose();
         _waveOutEvent?.Dispose();
 
+
+        var stream=  AssetLoader.Open(new Uri("avares://TimeTraveler/Assets/jumpSound.mp3"));
         // 加载并播放 MP3 音效
-        _mp3FileReader = new Mp3FileReader("D:\\TimeTraveler2\\TimeTraveler\\Assets\\jumpSound.mp3");
+        _mp3FileReader = new Mp3FileReader(stream);
         _waveOutEvent = new WaveOutEvent();
         _waveOutEvent.Init(_mp3FileReader);
         _waveOutEvent.Play();
@@ -33,8 +38,9 @@ public class AudioService : IAudioService
         _backgroundMusicReader?.Dispose();
         _backgroundMusicPlayer?.Dispose();
 
+        var stream = AssetLoader.Open(new Uri("avares://TimeTraveler/Assets/GameThreeBackgroundMusuic.mp3"));
         // 创建新的播放器实例
-        _backgroundMusicReader = new Mp3FileReader("D:\\TimeTraveler2\\TimeTraveler\\Assets\\GameThreeBackgroundMusuic.mp3");
+        _backgroundMusicReader = new Mp3FileReader(stream);
         _backgroundMusicPlayer = new WaveOutEvent();
         _backgroundMusicPlayer.Init(_backgroundMusicReader);
 
