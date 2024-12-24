@@ -1,0 +1,150 @@
+﻿<UserControl 
+    x:Class="TimeTraveler.Views.BackgroundThreeView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:uc="using:TimeTraveler.UserControls"
+    mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    FontFamily="{StaticResource MyFont}"
+    d:DataContext="{Binding BackgroundThreeViewModel, Source={StaticResource ServiceLocator}}">
+
+    <Border>
+        <Border.Background>
+            <ImageBrush
+                Source="\Assets\BackView.jpg"
+                Stretch="UniformToFill"
+                Opacity="0.5" />
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header Section -->
+            <Border BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border VerticalAlignment="Top">
+                        <Border.Background>
+                            <ImageBrush
+                                Source="\Assets\t1.png"
+                                Stretch="UniformToFill"
+                                Opacity="0.3" />
+                        </Border.Background>
+
+                        <StackPanel>
+                            <Label
+                                Content="风之子"
+                                FontSize="50"
+                                Foreground="#c7c0a6"
+                                HorizontalAlignment="Center"
+                                Margin="0,20,0,10" />
+                            <Label
+                                Content="第三章"
+                                FontSize="30"
+                                Foreground="#3f4555"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,20" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Gameplay Introduction -->
+                    <Border Grid.Row="1">
+                        <StackPanel>
+                            <TextBlock
+                                Text="玩法介绍"
+                                FontSize="35"
+                                Foreground="#3f4555"
+                                HorizontalAlignment="Center"
+                                Margin="20,50,0,0"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Description Section -->
+                    <Border
+                        Grid.Row="2"
+                        Background="Transparent"
+                        BorderThickness="1"
+                        HorizontalAlignment="Center"
+                        Margin="30,0,30,10"
+                        VerticalAlignment="Center">
+                        <StackPanel>
+                            <TextBlock
+                                FontSize="26"
+                                Foreground="#3f4555"
+                                HorizontalAlignment="Left"
+                                Margin="20,10,0,10"
+                                Text="  在这场试炼中，玩家将迎接风之试炼，挑战自己的极限。通过精准的跳跃与躲避，玩家需在限定的时间内避开铺天盖地的障碍物，同时拾取风元素以增强自身力量。每一颗风元素都蕴含着巨大的能量，它们将为你带来新的力量和希望。但请注意，一旦成功挑战，机会便不再重来。挑战的成功不仅考验玩家的敏捷与智慧，更是勇气与决心的试炼。你准备好迎接风之考验了吗？"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                FontSize="26"
+                                Foreground="#3f4555"
+                                HorizontalAlignment="Left"
+                                Margin="20,10,0,20"
+                                Text="  注：玩家挑战成功后将无法重新挑战，请注意拾取风元素"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Start Button -->
+            <Button
+                Grid.Row="1"
+                Content="开始试炼"
+                Background="#E9E5D9"
+                Command="{Binding GoToGameThreeViewCommand}"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,30"
+                PointerEntered="Button_PointerEntered_1"
+                PointerExited="Button_PointerExited_2">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            x:Name="PART_ButtonBorder"
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                            Padding="20"
+                            CornerRadius="80"
+                            Width="200">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="6*" />
+                                </Grid.ColumnDefinitions>
+                                <Border
+                                    Background="#3f4555"
+                                    CornerRadius="18"
+                                    Width="36"
+                                    Height="36">
+                                    <Ellipse
+                                        Width="24"
+                                        Height="24"
+                                        Fill="#3f4555"
+                                        Stroke="#CABD93"
+                                        StrokeThickness="3" />
+                                </Border>
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                    FontSize="26"
+                                    Foreground="#3f4555"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>
