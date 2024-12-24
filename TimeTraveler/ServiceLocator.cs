@@ -121,10 +121,13 @@ public class ServiceLocator {
             .AddSingleton<IMazeService, MazeService>();
         serviceCollection
             .AddSingleton<ILargeModelService, LargeModelService>();
-        
+
+        serviceCollection
+            .AddSingleton<IResultVerifyFourService, ResultVerifyFourService>();
+
         //Others
-       
-        
+
+
         _serviceProvider = serviceCollection.BuildServiceProvider();
     }
 }
