@@ -69,8 +69,16 @@ public class ServiceLocator {
 
     public ResultTwoViewModel ResultTwoViewModel =>
         _serviceProvider.GetService<ResultTwoViewModel>();
-    
-    
+
+    public BackgroundFourViewModel BackgroundFourViewModel =>
+       _serviceProvider.GetService<BackgroundFourViewModel>();
+    public GameFourViewModel GameFourViewModel =>
+        _serviceProvider.GetService<GameFourViewModel>();
+
+    public ResultFourViewModel ResultFourViewModel =>
+        _serviceProvider.GetService<ResultFourViewModel>();
+
+
     public ServiceLocator() {
         var serviceCollection = new ServiceCollection();
 
@@ -90,6 +98,10 @@ public class ServiceLocator {
         serviceCollection.AddSingleton<BackgroundTwoViewModel>();
         serviceCollection.AddSingleton<ResultTwoViewModel>();
 
+
+        serviceCollection.AddSingleton<BackgroundFourViewModel>();
+        serviceCollection.AddSingleton<GameFourViewModel>();
+        serviceCollection.AddSingleton<ResultFourViewModel>();
 
         //Services
         serviceCollection

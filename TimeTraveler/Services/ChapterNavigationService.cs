@@ -23,6 +23,10 @@ public class ChapterNavigationService : IChapterNavigationService
             ViewType.BackgroundTwoView =>ServiceLocator.Current.BackgroundTwoViewModel,
             ViewType.GameTwoView =>ServiceLocator.Current.GameTwoViewModel,
             ViewType.ResultTwoView =>ServiceLocator.Current.ResultTwoViewModel,
+
+            ViewType.BackgroundFourView => ServiceLocator.Current.BackgroundFourViewModel,
+            ViewType.GameFourView => ServiceLocator.Current.GameFourViewModel,
+            ViewType.ResultFourView => ServiceLocator.Current.ResultFourViewModel,
             //在这里扩展章节：继续添加要导航的页面
             _ => throw new Exception("未知的视图。"),
         };
