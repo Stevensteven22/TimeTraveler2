@@ -120,29 +120,9 @@ public class ElementalService : IElementalService
                     case ElementType.WindElemental:
                         existingBuff.Value1 = existingBuff.Value1 + resultModel.ImprovedValue1;
 =======
-                       existingBuff.Value2 +=
-                            existingBuff.Value2 * (resultModel.ImprovedValue2 / 100.0d);
-                        await _buffStorage.SaveBuffsAsync(existingBuff);
-                        break;
-                    case ElementType.IceElemental:
-                        existingBuff.Value2 +=
-                            existingBuff.Value2 * (resultModel.ImprovedValue2 / 100.0d);
-                        await _buffStorage.SaveBuffsAsync(existingBuff);
-                        break;
-                    case ElementType.RockElemental:
-                       existingBuff.Value2 +=
-                            existingBuff.Value2 * (resultModel.ImprovedValue2 / 100.0d);
-                        await _buffStorage.SaveBuffsAsync(existingBuff);
-                        break;
-                    case ElementType.ThunderElemental:
-                        existingBuff.Value1 +=  resultModel.ImprovedValue1;
-                        await _buffStorage.SaveBuffsAsync(existingBuff);
-                        break;
-                    case ElementType.WindElemental:
-                        existingBuff.Value1 +=  resultModel.ImprovedValue1;
->>>>>>> 05c51f3bb8a2c1dfa350f1b0bbc6032c38973f27
-                        await _buffStorage.SaveBuffsAsync(existingBuff);
-                        break;
+                       
+                   
+                  
                 }
             }
 
