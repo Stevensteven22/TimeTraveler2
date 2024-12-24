@@ -1,0 +1,143 @@
+﻿<UserControl
+    FontFamily="{StaticResource MyFont}"
+    d:DataContext="{Binding BackgroundTwoViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.BackgroundTwoView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="using:TimeTraveler.UserControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border>
+        <Border.Background>
+            <ImageBrush
+                Opacity="0.5"
+                Source="\Assets\2_背景.jpeg"
+                Stretch="UniformToFill" />
+        </Border.Background>
+        <Border>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border BorderThickness="1">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border VerticalAlignment="Top">
+                            <Border.Background>
+                                <ImageBrush
+                                    Opacity="0.3"
+                                    Source="\Assets\2_背景.jpeg"
+                                    Stretch="UniformToFill" />
+                            </Border.Background>
+
+                            <StackPanel>
+                                <Label
+                                    Content="过去的谜团"
+                                    FontSize="50"
+                                    Foreground="#ac0a"
+                                    HorizontalAlignment="Center" />
+                                <Label
+                                    Content="第二章"
+                                    FontSize="30"
+                                    Foreground="#3f4555"
+                                    HorizontalAlignment="Center"
+                                    Margin="10,0,0,0" />
+
+                            </StackPanel>
+
+                        </Border>
+                        <Border
+                            Background="Transparent"
+                            BorderThickness="1"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Margin="30"
+                            VerticalAlignment="Center">
+                            <StackPanel>
+                                <TextBlock
+                                    FontSize="26"
+                                    Foreground="#3f4555"
+                                    HorizontalAlignment="Left"
+                                    Margin="20,10,0,0"
+                                    Text="  当艾琳清醒过来时，她发现自己回到了过去，一个充满古老建筑和异样人群的时代。这里的人穿着奇特的服饰，讲着一种她听不懂的方言。走在街道上，艾琳注意到一些熟悉的地标，意识到自己身处千年前的璃月港。她看见人们正忙碌地为某种祭典做准备，而一位叫做钟离的男子站在一旁，似乎在沉思。"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    FontSize="26"
+                                    Foreground="#3f4555"
+                                    HorizontalAlignment="Left"
+                                    Margin="20,10,0,0"
+                                    Text="  艾琳试图与钟离交谈，但却发现自己无法说出口，她的声音仿佛被无形的力量束缚。正当她苦恼时，一位神秘的老者递给她一卷古老的书卷，书卷上记载了关于“时之石”的传说和开启时间旅途的线索。但书卷为持有者设置了考验，只有能够离开它设置的迷宫才能破解书卷......."
+                                    TextWrapping="Wrap" />
+
+                            </StackPanel>
+
+                        </Border>
+                    </Grid>
+                </Border>
+
+
+                <Button
+                    Background="#E9E5D9"
+                    Command="{Binding GoToGameViewCommand}"
+                    Content="破解迷宫"
+                    Grid.Row="1"
+                    Margin="0,0,0,30"
+                    PointerEntered="Button_PointerEntered_1"
+                    PointerExited="Button_PointerExited_2"
+                    VerticalAlignment="Bottom">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border
+                                Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                                CornerRadius="80"
+                                Padding="20"
+                                Width="200"
+                                x:Name="PART_ButtonBorder">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="6*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border
+                                        Background="#3f4555"
+                                        CornerRadius="18"
+                                        Height="36"
+                                        Width="36">
+                                        <Ellipse
+                                            Fill="#3f4555"
+                                            Height="24"
+                                            Stroke="#CABD93"
+                                            StrokeThickness="3"
+                                            Width="24" />
+
+                                    </Border>
+                                    <TextBlock
+                                        FontSize="26"
+                                        Foreground="#3f4555"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Center"
+                                        Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                        VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <!--  添加样式和触发器  -->
+
+                    <!--  使用 VisualStateManager 来处理鼠标悬停效果  -->
+
+                </Button>
+
+            </Grid>
+        </Border>
+    </Border>
+</UserControl>

@@ -1,0 +1,223 @@
+﻿<UserControl
+    FontFamily="{StaticResource MyFont}"
+    d:DataContext="{Binding GameTwoViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.GameTwoView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    KeyDown="OnKeyDown">
+    <i:Interaction.Behaviors>
+        <ia:DataTriggerBehavior Binding="{Binding GameStatus}" Value="">
+            <ia:InvokeCommandAction Command="{Binding ShowPopupCommand}" />
+        </ia:DataTriggerBehavior>
+    </i:Interaction.Behaviors>
+    <UserControl.Resources>
+        <!-- 可以添加其他资源 -->
+        <Color x:Key="TitleColor">#d3bc8e</Color>
+        <Color x:Key="ContentColor">#b1aca4</Color>
+        <Color x:Key="ControlColor">#3f4555</Color>
+        
+    </UserControl.Resources>
+
+  <Border>
+        <Border.Background>
+            <ImageBrush
+                Opacity="1"
+                Source="/Assets/迷宫界面背景.png"
+                Stretch="UniformToFill" />
+        </Border.Background>
+
+        <Grid>
+        <Border>
+            <Border.Background>
+                <ImageBrush
+                    Opacity="1"
+                    Source="/Assets/迷宫界面背景.png"
+                    Stretch="UniformToFill" />
+            </Border.Background>
+
+            <Grid>
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding MazeGrid}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!-- 根据每个 MazeCell 显示图像 -->
+                                        <Image Source="{Binding Image}" Width="50" Height="50"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
+                <!-- 放弃和重新开始按钮放在右上角 -->
+                <StackPanel Grid.Row="0" 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Top" 
+                            Margin="10">
+                  <Button
+                Background="#E9E5D9"
+                Command="{Binding RestartCommand}"
+                Content="重新开始"
+                Margin="0"
+                PointerEntered="Button_PointerEntered_1"
+                PointerExited="Button_PointerExited_2">
+                      
+                     
+                      <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                            CornerRadius="80"
+                            Padding="10"
+                            Width="120"
+                            x:Name="PART_ButtonBorder">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="6*" />
+                                </Grid.ColumnDefinitions>
+                                <Border
+                                    Background="#3f4555"
+                                    CornerRadius="18"
+                                    Height="25"
+                                    Width="25">
+                                    <Ellipse
+                                        Fill="#3f4555"
+                                        Height="24"
+                                        Stroke="#CABD93"
+                                        StrokeThickness="3"
+                                        Width="24" />
+                                </Border>
+                                <TextBlock
+                                    FontSize="15"
+                                    Foreground="#3f4555"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+               <Button
+                Background="#E9E5D9"
+                Command="{Binding QuitCommand}"
+                Content="放弃"
+                Margin="0"
+                PointerEntered="Button_PointerEntered_1"
+                PointerExited="Button_PointerExited_2">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                            CornerRadius="80"
+                            Padding="10"
+                            Width="100"
+                            x:Name="PART_ButtonBorder">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="6*" />
+                                </Grid.ColumnDefinitions>
+                                <Border
+                                    Background="#3f4555"
+                                    CornerRadius="18"
+                                    Height="25"
+                                    Width="25">
+                                    <Ellipse
+                                        Fill="#3f4555"
+                                        Height="24"
+                                        Stroke="#CABD93"
+                                        StrokeThickness="3"
+                                        Width="24" />
+                                </Border>
+                                <TextBlock
+                                    FontSize="15"
+                                    Foreground="#3f4555"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+             <Popup x:Name="InfoPopup"
+               IsOpen="{Binding IsPopupVisuale}" 
+               Placement="Center" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center">
+            <Border Background="White" BorderBrush="Gray" BorderThickness="2" CornerRadius="10" Width="500" Height="500">
+                <Grid>
+                    <!-- 弹窗内容布局 -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" /> <!-- 标题行 -->
+                        <RowDefinition Height="*" />  
+                        <RowDefinition Height="*" />  <!-- 内容区域 -->
+                        <RowDefinition Height="Auto" /> <!-- 按钮行 -->
+                    </Grid.RowDefinitions>
+
+                    <!-- 标题栏 -->
+                    <TextBlock Grid.Row="0"
+                               Text="元素的考验"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="#3F4555"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,10" />
+
+                    <!-- 问题内容 -->
+                    <TextBlock Grid.Row="1"
+                               Text="{Binding CurrentPuzzle.Question}"
+                               FontSize="16"
+                               Foreground="#3F4555"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="20,10,20,10" />
+                    <TextBlock Grid.Row="2"
+                               Text="{Binding Reply}"
+                               FontSize="10"
+                               Foreground="#3F4555"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="20,10,20,10" />
+
+                    <!-- 按钮区域 -->
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10" Margin="0,10,0,10">
+                        <Button Command="{Binding ChooseACommand}" Content="A" Width="80" Height="40" Background="#E9E5D9" BorderBrush="#CABD93" Foreground="#3F4555" />
+                        <Button Command="{Binding ChooseBCommand}" Content="B" Width="80" Height="40" Background="#E9E5D9" BorderBrush="#CABD93" Foreground="#3F4555" />
+                        <Button Command="{Binding ChooseCCommand}" Content="C" Width="80" Height="40" Background="#E9E5D9" BorderBrush="#CABD93" Foreground="#3F4555" />
+                        <!-- <Button Command="{Binding ClosePopCommand}" Content="关闭" Width="80" Height="40" Background="#F44336" BorderBrush="#D32F2F" Foreground="White" /> -->
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Popup>
+
+    </Grid>
+    </Border>
+</UserControl>
