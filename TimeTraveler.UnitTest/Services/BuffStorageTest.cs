@@ -64,6 +64,17 @@ public class BuffStorageTest : IDisposable
     public async Task GetBuffAsync_Default()
     {
         var BuffStorage = await BuffStorageHelper.GetInitializedBuffStorage();
+        await BuffStorage.AddBuffsAsync(
+            new Buff
+            {
+                Id = 1,
+                Name = "火元素",
+                Description = "攻击力+10%",
+                Value1 = 10,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            }
+        );
         var buff = await BuffStorage.GetBuffAsync(1);
         Assert.Equal("火元素", buff.Name);
         await BuffStorage.CloseAsync();
@@ -73,6 +84,48 @@ public class BuffStorageTest : IDisposable
     public async Task GetBuffsAsync_Default()
     {
         var BuffStorage = await BuffStorageHelper.GetInitializedBuffStorage();
+        var result = await BuffStorage.AddBuffsAsync(
+            new Buff
+            {
+                Name = "火元素",
+                Description = "攻击力+10%",
+                Value1 = 10,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            },
+            new Buff
+            {
+                Name = "冰元素",
+                Description = "生命力+10%",
+                Value1 = 10,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            },
+            new Buff
+            {
+                Name = "风元素",
+                Description = "闪避率+10%",
+                Value1 = 10,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            },
+            new Buff
+            {
+                Name = "雷元素",
+                Description = "暴击率+10%",
+                Value1 = 10,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            },
+            new Buff
+            {
+                Name = "岩元素",
+                Description = "防御力+10%",
+                Value1 = 10,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            }
+        );
         var buffs = await BuffStorage.GetBuffsAsync(
             Expression.Lambda<Func<Buff, bool>>(
                 Expression.Constant(true),
@@ -193,7 +246,7 @@ public class BuffStorageTest : IDisposable
         var buff = await BuffStorage.GetBuffAsync(x => x.Name == "火元素");
         buff.Value1 = 30;
         var result = await BuffStorage.SaveBuffsAsync(buff);
-        var newBuff =  await BuffStorage.GetBuffAsync(x => x.Name == "火元素");
+        var newBuff = await BuffStorage.GetBuffAsync(x => x.Name == "火元素");
         Assert.Equal(newBuff.Value1, 30);
         await BuffStorage.CloseAsync();
     }

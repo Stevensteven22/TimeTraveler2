@@ -26,6 +26,7 @@
     </Application.DataTemplates>
 
     <Application.Styles>
+        <StyleInclude Source="avares://Avalonia.Xaml.Interactions.Draggable/Styles.axaml" />
         <StyleInclude Source="avares://Semi.Avalonia/Themes/Index.axaml" />
         <u-semi:SemiTheme Locale="zh-CN" />
         <StyleInclude Source="UserControls/UserControlsStyle.axaml" />
