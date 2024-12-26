@@ -1,11 +1,10 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using TimeTraveler.Libary.Services;
 using TimeTraveler.Libary.ViewModels;
 using TimeTraveler.Services;
-using Ursa.Controls;
 
 namespace TimeTraveler;
 
@@ -51,33 +50,11 @@ public class ServiceLocator {
     public InitializationViewModel InitializationViewModel =>
         _serviceProvider.GetService<InitializationViewModel>();
     
-    public BackgroundThreeViewModel BackgroundThreeViewModel =>
-        _serviceProvider.GetService<BackgroundThreeViewModel>();
-    public GameThreeViewModel GameThreeViewModel =>
-        _serviceProvider.GetService<GameThreeViewModel>();
-    public ReturnThreeViewModel ReturnThreeViewModel =>
-        _serviceProvider.GetService<ReturnThreeViewModel>();
-    
-    public ResultThreeViewModel ResultThreeViewModel =>
-        _serviceProvider.GetService<ResultThreeViewModel>();
+    public BackgroundFiveViewModel BackgroundFiveViewModel => _serviceProvider.GetService<BackgroundFiveViewModel>();
 
-    public GameTwoViewModel GameTwoViewModel =>
-        _serviceProvider.GetService<GameTwoViewModel>();
+    public GameFiveViewModel GameFiveViewModel => _serviceProvider.GetService<GameFiveViewModel>();
 
-    public BackgroundTwoViewModel BackgroundTwoViewModel =>
-        _serviceProvider.GetService<BackgroundTwoViewModel>();
-
-    public ResultTwoViewModel ResultTwoViewModel =>
-        _serviceProvider.GetService<ResultTwoViewModel>();
-
-    public BackgroundFourViewModel BackgroundFourViewModel =>
-       _serviceProvider.GetService<BackgroundFourViewModel>();
-    public GameFourViewModel GameFourViewModel =>
-        _serviceProvider.GetService<GameFourViewModel>();
-
-    public ResultFourViewModel ResultFourViewModel =>
-        _serviceProvider.GetService<ResultFourViewModel>();
-
+    public ResultFiveViewModel ResultFiveViewModel => _serviceProvider.GetService<ResultFiveViewModel>();
 
     public ServiceLocator() {
         var serviceCollection = new ServiceCollection();
@@ -90,18 +67,10 @@ public class ServiceLocator {
         serviceCollection.AddSingleton<BackgroundViewModel>();
         serviceCollection.AddSingleton<ReturnViewModel>();
         serviceCollection.AddSingleton<ResultViewModel>();
-        serviceCollection.AddSingleton<BackgroundThreeViewModel>();
-        serviceCollection.AddSingleton<GameThreeViewModel>();
-        serviceCollection.AddSingleton<ReturnThreeViewModel>();
-        serviceCollection.AddSingleton<ResultThreeViewModel>();
-        serviceCollection.AddSingleton<GameTwoViewModel>();
-        serviceCollection.AddSingleton<BackgroundTwoViewModel>();
-        serviceCollection.AddSingleton<ResultTwoViewModel>();
+        serviceCollection.AddSingleton<BackgroundFiveViewModel>();
+        serviceCollection.AddSingleton<GameFiveViewModel>();
+        serviceCollection.AddSingleton<ResultFiveViewModel>();
 
-
-        serviceCollection.AddSingleton<BackgroundFourViewModel>();
-        serviceCollection.AddSingleton<GameFourViewModel>();
-        serviceCollection.AddSingleton<ResultFourViewModel>();
 
         //Services
         serviceCollection
@@ -114,20 +83,11 @@ public class ServiceLocator {
         serviceCollection
             .AddSingleton<IResultVerifyService, ResultVerifyService>();
         serviceCollection.AddSingleton<IElementalService, ElementalService>();
-        serviceCollection
-            .AddSingleton<IFlyService, FlyService>();
-        serviceCollection.AddSingleton<IAudioService, AudioService>();
-        serviceCollection
-            .AddSingleton<IMazeService, MazeService>();
-        serviceCollection
-            .AddSingleton<ILargeModelService, LargeModelService>();
-
-        serviceCollection
-            .AddSingleton<IResultVerifyFourService, ResultVerifyFourService>();
-
+ 
+        
         //Others
-
-
+       
+        
         _serviceProvider = serviceCollection.BuildServiceProvider();
     }
 }

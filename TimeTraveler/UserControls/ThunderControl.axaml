@@ -7,7 +7,6 @@
     </Design.PreviewWith>
     <Styles.Resources>
         <SolidColorBrush Color="#ae8ebe" x:Key="ThunderColor" />
-        <SolidColorBrush Color="Gold" x:Key="DropHighlightColor" />
         <x:String x:Key="DefaultTitle">先选左后右，修复电路，使电流通畅。</x:String>
     </Styles.Resources>
     <Style Selector="controls|ThunderControl">
@@ -110,34 +109,17 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate>
-                                                <Border DragDrop.AllowDrop="True" x:Name="PART_ListBoxItemBorder">
+                                                <Border x:Name="PART_ListBoxItemBorder">
                                                     <controls:Battery
                                                         Command="{Binding ClickBatteryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:ThunderControl}}}"
                                                         CommandParameter="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}"
-                                                        IsSelected="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
-                                                    <Interaction.Behaviors>
-                                                        <RoutedEventTriggerBehavior RoutedEvent="{x:Static DragDrop.DropEvent}">
-                                                            <InvokeCommandAction Command="{Binding DropBatteryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:ThunderControl}}}" CommandParameter="{Binding ., Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" />
-                                                        </RoutedEventTriggerBehavior>
-                                                        <RoutedEventTriggerBehavior RoutedEvent="{x:Static DragDrop.DragEnterEvent}">
-                                                            <AddClassAction ClassName="dropHighlight" />
-                                                        </RoutedEventTriggerBehavior>
-                                                        <RoutedEventTriggerBehavior RoutedEvent="{x:Static DragDrop.DragLeaveEvent}">
-                                                            <RemoveClassAction ClassName="dropHighlight" />
-                                                        </RoutedEventTriggerBehavior>
-                                                    </Interaction.Behaviors>
+                                                        IsSelected="{Binding Path=IsSelected, Mode=OneWayToSource, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
                                                 </Border>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
                                     <Style Selector="^:selected /template/ Border#PART_ListBoxItemBorder">
                                         <Setter Property="BorderBrush" Value="{StaticResource ThunderColor}" />
-                                        <Setter Property="BorderThickness" Value="10" />
-                                        <Setter Property="Padding" Value="10" />
-                                        <Setter Property="CornerRadius" Value="20" />
-                                    </Style>
-                                    <Style Selector="^ /template/ Border#PART_ListBoxItemBorder.dropHighlight">
-                                        <Setter Property="BorderBrush" Value="{StaticResource DropHighlightColor}" />
                                         <Setter Property="BorderThickness" Value="10" />
                                         <Setter Property="Padding" Value="10" />
                                         <Setter Property="CornerRadius" Value="20" />

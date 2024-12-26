@@ -1,0 +1,33 @@
+﻿<UserControl
+  x:Class="TimeTraveler.Views.GameFivePage1View"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+  xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+  d:DesignHeight="800"
+  d:DesignWidth="1200"
+  x:DataType="vm:GameFivePage1ViewModel"
+  FontFamily="{StaticResource MyFont}"
+  mc:Ignorable="d">
+
+
+  <Border>
+    <Grid>
+      <Border Background="White" Opacity="0.5" />
+      <Border Margin="50" VerticalAlignment="Stretch">
+        <DockPanel LastChildFill="True">
+          <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="50">
+            <userControls:OKButton Width="500" Command="{Binding ACommand}" Content="A.与艾琳合作，一起寻找元素秘宝" />
+            <userControls:OKButton Width="500" Command="{Binding BCommand}" Content="B.独自调查" />
+          </StackPanel>
+          <StackPanel>
+            <TextBlock Margin="200,150,200,0" HorizontalAlignment="Left" FontSize="26" Text="       艾琳带你找到长老，长老告诉你，要找到元素秘宝，必须先集齐三块“元素碎片”，它们分别藏在云隐村的三个古老遗迹中。长老还透露，每个遗迹都隐藏着巨大的危险，需要勇气和智慧才能通过。" TextWrapping="Wrap" />
+            <TextBlock Margin="200,100,200,0" HorizontalAlignment="Left" FontSize="26" Text="       接下来，你选择？" TextWrapping="Wrap" />
+          </StackPanel>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </Border>
+</UserControl>

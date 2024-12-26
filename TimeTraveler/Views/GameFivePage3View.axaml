@@ -1,0 +1,52 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFivePage3View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    d:DataContext="{Binding GameFiveViewModel.Page3, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:GameFivePage3ViewModel"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+
+    <Border>
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="50" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="20">
+                        <userControls:OKButton Command="{Binding CrackCommand}" Content="破解" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Margin="50,100,50,0" HorizontalAlignment="Left" FontSize="26" Text="              你决定独自行动，首先前往长老提到的第一个遗迹。看到了一道谜题：" TextWrapping="Wrap" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       请根据下面事实，找出凶手：" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       1.雷电将军或者辛焱谋害了钟离。" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       2.如果雷电将军谋害了钟离，则谋害不会发生在午夜前。" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       3.如果辛焱的证词是正确的，则谋害发生在午夜前。" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       4.如果辛焱的证词不正确，则午夜时屋里灯光未灭。" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       5.如果雷电将军富裕，则他不会谋害钟离。" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       6.钟离有钱且雷电将军不富裕。" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       7.午夜时屋里灯灭了。" />
+                        <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="       谁是凶手？" />
+                        <ComboBox HorizontalAlignment="Stretch" Classes="Bordered" ItemsSource="{Binding Options}" PlaceholderText="请选择答案" SelectedItem="{Binding SelectedItem}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="10" Orientation="Horizontal" Spacing="10">
+                                        <u:Avatar Width="30" Height="30" Background="Transparent" Classes="Circle" Source="{Binding Icon}" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Text}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

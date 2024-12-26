@@ -1,0 +1,33 @@
+﻿<UserControl
+  x:Class="TimeTraveler.Views.GameFivePage11View"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+  xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+  d:DataContext="{Binding GameFiveViewModel.Page11, Source={StaticResource ServiceLocator}}"
+  d:DesignHeight="800"
+  d:DesignWidth="1200"
+  x:DataType="vm:GameFivePage11ViewModel"
+  FontFamily="{StaticResource MyFont}"
+  mc:Ignorable="d">
+
+
+  <Border>
+    <Grid>
+      <Border Background="White" Opacity="0.5" />
+      <Border Margin="50" VerticalAlignment="Stretch">
+        <DockPanel LastChildFill="True">
+          <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="20">
+            <userControls:OKButton Width="300" Command="{Binding CompleteCommand}" Content="结束试炼" />
+          </StackPanel>
+          <StackPanel>
+            <TextBlock Margin="200,200,200,0" HorizontalAlignment="Left" FontSize="26" Text="       经过一番激战，你最终战胜了背叛者，拿到了岩元素碎片，但秘宝也因此受损，云隐村陷入短暂的混乱。在这个过程中，你深刻体会到了人性的复杂和背叛的痛苦。" TextWrapping="Wrap" />
+          </StackPanel>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </Border>
+</UserControl>
+

@@ -1,0 +1,36 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFivePage10View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    d:DataContext="{Binding GameFiveViewModel.Page10, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:GameFivePage10ViewModel"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+
+    <Border>
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="50" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="20">
+                        <userControls:OKButton Width="300" Content="结束试炼" Command="{Binding CompleteCommand}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Margin="200,150,200,0" HorizontalAlignment="Left" FontSize="26" Text="       你与艾琳共同面对试炼，展现了非凡的勇气和智慧。在风和雷之试炼场中，你们通过默契的配合，成功获得了剩下的两块元素碎片。这个经历让你们更加了解彼此，也加深了你们之间的友谊。" TextWrapping="Wrap" />
+                        <TextBlock Margin="200,50,200,0" HorizontalAlignment="Left" FontSize="26" Text="       通过与合作伙伴的共同努力，你们集齐了所有元素碎片，并发现了秘宝的真正含义——它并非实体宝物，而是云隐村与自然和谐共生的力量象征。你们用这份力量平息了异象，保护了村子。在这个过程中，你们之间的友谊和信任得到了升华，你们都成为了云隐村的英雄。" TextWrapping="Wrap" />
+
+                    </StackPanel>
+
+
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

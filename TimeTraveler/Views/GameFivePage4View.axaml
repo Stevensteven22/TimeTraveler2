@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFivePage4View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    d:DataContext="{Binding GameFiveViewModel.Page4, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:GameFivePage4ViewModel"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+
+    <Border>
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="50" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="50">
+                        <userControls:OKButton Width="600" Command="{Binding ACommand}" Content="A.继续信任艾琳，共同寻找剩余碎片" />
+                        <userControls:OKButton Width="600" Command="{Binding BCommand}" Content="B.对艾琳产生疑虑，独自寻找剩余碎片" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Margin="200,150,200,0" HorizontalAlignment="Left" FontSize="26" Text="      面对一系列机关和谜题。艾琳展现了她对五行知识的深刻理解，而你则运用你的冒险经验，你们共同解开了谜题，获得了第一块火之碎片。在这个过程中，你们之间的信任和友谊逐渐加深。" TextWrapping="Wrap" />
+                        <TextBlock Margin="200,50,200,0" HorizontalAlignment="Left" FontSize="26" Text="      接下来，你选择？" TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

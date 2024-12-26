@@ -1,0 +1,30 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFiveView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    d:DataContext="{Binding GameFiveViewModel, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+    <Border>
+        <Border.Background>
+            <ImageBrush Opacity="1" Source="\Assets\5_游戏背景.jpg" Stretch="UniformToFill" />
+        </Border.Background>
+
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="20" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <TransitioningContentControl Content="{Binding CurrentPage}" />
+                </DockPanel>
+            </Border>
+            <userControls:ShowElementalControl ClickCommand="{Binding ShowElementViewModel1.ClickElementCommand}" ElementalImage="{Binding ShowElementViewModel1.ElementType}" IsShowEnabled="{Binding ShowElementViewModel1.IsShowElementEnabled}" />
+            <userControls:ShowElementalControl ClickCommand="{Binding ShowElementViewModel2.ClickElementCommand}" ElementalImage="{Binding ShowElementViewModel2.ElementType}" IsShowEnabled="{Binding ShowElementViewModel2.IsShowElementEnabled}" />
+        </Grid>
+    </Border>
+</UserControl>

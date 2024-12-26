@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFivePage12View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    d:DataContext="{Binding GameFiveViewModel.Page12, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:GameFivePage12ViewModel"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+
+    <Border>
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="50" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="20">
+                        <userControls:OKButton Width="300" Command="{Binding CompleteCommand}" Content="结束试炼" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Margin="200,200,200,0" HorizontalAlignment="Left" FontSize="26" Text="       你最终独自找到了所有碎片，但缺乏伙伴的帮助，你无法完全理解元素秘宝的真谛，只能勉强平息异象。虽然村子安全了，但你心中却留下了深深的孤独感和对友谊的渴望。" TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

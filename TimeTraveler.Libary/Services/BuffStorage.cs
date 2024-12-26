@@ -7,7 +7,7 @@ namespace TimeTraveler.Libary.Services;
 
 public class BuffStorage : IBuffStorage
 {
-    public const int NumberPoetry = 5;
+    public const int NumberPoetry = 3;
 
     public const string DbName = $"{nameof(TimeTraveler)}db.sqlite3";
 

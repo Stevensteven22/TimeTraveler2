@@ -1,0 +1,39 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFivePage2View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    d:DataContext="{Binding GameFiveViewModel.Page2, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:GameFivePage2ViewModel"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+    <Border>
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="50" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="20">
+                        <userControls:OKButton Command="{Binding CrackCommand}" Content="破解" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Margin="50,150,200,0" HorizontalAlignment="Left" FontSize="26" Text="你们来到遗迹，看到了一道谜题：" TextWrapping="Wrap" />
+                        <TextBlock Margin="50,10,200,0" HorizontalAlignment="Left" FontSize="26" Text="“五行”学说中，金、木、水、火、土的五行相生的顺序是：" TextWrapping="Wrap" />
+                        <ListBox ItemsSource="{Binding Options}" SelectedItem="{Binding SelectedItem}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="50,10,50,0" HorizontalAlignment="Left" FontSize="26" Text="{Binding Text}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

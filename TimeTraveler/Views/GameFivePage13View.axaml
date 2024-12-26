@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFivePage13View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    d:DataContext="{Binding GameFiveViewModel.Page13, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:GameFivePage13ViewModel"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+
+    <Border>
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="50" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="20">
+                        <userControls:OKButton Width="300" Command="{Binding CompleteCommand}" Content="结束试炼" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Margin="200,180,200,0" HorizontalAlignment="Left" FontSize="26" Text="       虽然神秘旅人展现出了惊人的智慧和能力，但你仍然对他的动机感到怀疑。最终，你们成功获得了第二块风之碎片，但彼此之间的信任仍然脆弱。在寻找最后一块雷之碎片时，你的合作伙伴神秘旅人果然背叛了你，企图独占秘宝的力量。但由于你的警惕，你最终战胜了背叛者，集齐了所有元素碎片，并发现了秘宝的真正含义——它并非实体宝物，而是云隐村与自然和谐共生的力量象征。你们用这份力量平息了异象，保护了村子，成为了云隐村的英雄。" TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

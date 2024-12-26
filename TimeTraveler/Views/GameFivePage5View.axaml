@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFivePage5View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    d:DataContext="{Binding GameFiveViewModel.Page5, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:GameFivePage5ViewModel"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+
+    <Border>
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="50" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="50">
+                        <userControls:OKButton Width="500" Command="{Binding ACommand}" Content="A.独自调查，与神秘旅人保持距离" />
+                        <userControls:OKButton Width="500" Command="{Binding BCommand}" Content="B.与神秘旅人合作，但保持警惕" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Margin="200,150,200,0" HorizontalAlignment="Left" FontSize="26" Text="       途中，你遇到了神秘旅人，他透露自己也在寻找秘宝，但目的不明。你对他产生了警惕，于是自己偷偷解开了上一个谜题，拿到了一块冰之碎片，但决定暂时保持沉默，观察他的行动。" TextWrapping="Wrap" />
+                        <TextBlock Margin="200,50,200,0" HorizontalAlignment="Left" FontSize="26" Text="       接下来，你选择？" TextWrapping="Wrap" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

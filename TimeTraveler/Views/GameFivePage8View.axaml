@@ -1,0 +1,58 @@
+﻿<UserControl
+    x:Class="TimeTraveler.Views.GameFivePage8View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="using:TimeTraveler.Libary.ViewModels"
+    d:DataContext="{Binding GameFiveViewModel.Page8, Source={StaticResource ServiceLocator}}"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:GameFivePage8ViewModel"
+    FontFamily="{StaticResource MyFont}"
+    mc:Ignorable="d">
+
+
+    <Border>
+        <Grid>
+            <Border Background="White" Opacity="0.5" />
+            <Border Margin="50" VerticalAlignment="Stretch">
+                <DockPanel LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Spacing="20">
+                        <userControls:OKButton Command="{Binding CrackCommand}" Content="破解" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Margin="200,150,200,0" HorizontalAlignment="Left" FontSize="26" Text="       你继续独自行动，来到了下一个遗迹处，看到了新的谜题：你继续独自行动，来到了下一个遗迹处，看到了新的谜题：" TextWrapping="Wrap" />
+                        <u:Avatar Width="100" Margin="0,0,0,0" HorizontalAlignment="Center" Classes="Square" Source="/Assets/5_谜题.jpg">
+                            <u:Avatar.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.5" />
+                                </Transitions>
+                            </u:Avatar.Transitions>
+                        </u:Avatar>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Spacing="10">
+                            <ListBox HorizontalAlignment="Stretch" ItemsSource="{Binding Options}" SelectedItem="{Binding SelectedItem}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" Spacing="40" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Spacing="10">
+                                            <u:Avatar Width="50" Height="50" Background="Transparent" Classes="Square" CornerRadius="10" IsHitTestVisible="False" Source="{Binding Icon}" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Text}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

@@ -56,7 +56,9 @@
                     <ImageBrush Source="../Assets/风元素场景.png" Stretch="UniformToFill" />
                 </Grid.Background>
                 <Border Background="Black" Opacity="0.5" />
-                <userControls:WindControl ClickCommand="{Binding GoToResultViewCommand}" ClickCommandParameter="{x:Static definitions:ElementType.WindElemental}" />
+                <userControls:WindControl 
+                    ClickCommand="{Binding GoToResultViewCommand}" 
+                    ClickCommandParameter="{x:Static definitions:ElementType.WindElemental}" />
             </Grid>
         </ControlTemplate>
 
@@ -66,7 +68,9 @@
                     <ImageBrush Source="../Assets/岩元素场景.png" Stretch="UniformToFill" />
                 </Grid.Background>
                 <Border Background="Black" Opacity="0.5" />
-                <userControls:RockControl ClickCommand="{Binding GoToResultViewCommand}" ClickCommandParameter="{x:Static definitions:ElementType.RockElemental}" />
+                <userControls:RockControl 
+                    ClickCommand="{Binding GoToResultViewCommand}" 
+                    ClickCommandParameter="{x:Static definitions:ElementType.RockElemental}" />
             </Grid>
         </ControlTemplate>
 
@@ -76,7 +80,9 @@
                     <ImageBrush Source="../Assets/雷元素场景.png" Stretch="UniformToFill" />
                 </Grid.Background>
                 <Border Background="Black" Opacity="0.5" />
-                <userControls:ThunderControl ClickCommand="{Binding GoToResultViewCommand}" ClickCommandParameter="{x:Static definitions:ElementType.ThunderElemental}" />
+                <userControls:ThunderControl 
+                    ClickCommand="{Binding GoToResultViewCommand}" 
+                    ClickCommandParameter="{x:Static definitions:ElementType.ThunderElemental}" />
             </Grid>
         </ControlTemplate>
     </UserControl.Resources>

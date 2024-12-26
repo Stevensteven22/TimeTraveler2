@@ -30,13 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Assets\BackGround_2.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="Assets\Move.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Compile Update="Views\GameFivePage2View .axaml.cs">
+      <DependentUpon>GameFivePage2View .axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\GameFivePage1View.axaml.cs">
+      <DependentUpon>GameFivePage1View.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
