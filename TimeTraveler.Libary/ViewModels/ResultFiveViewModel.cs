@@ -23,12 +23,12 @@ public partial class ResultFiveViewModel : ViewModelBase
             if (message is bool isSucceed && isSucceed)
             {
                 IsOK = true;
-                Result = "  **悬念**:";
+                Result = "恭喜旅行者得到了需要的元素增幅！请继续您的旅途吧！";
                 WeakReferenceMessenger.Default.Send<object, string>(new object(), "OnGameSucceed");
             }else 
             {
                 IsOK = false;
-                Result = "时间旅行者似乎无法破解书中的奥秘.......";
+                Result = "恭喜旅行者得到了需要的元素增幅！请继续您的旅途吧！";
                 WeakReferenceMessenger.Default.Send<object, string>(new object(), "OnGameFailed");
             }
         });
