@@ -50,6 +50,33 @@ public class ServiceLocator {
     public InitializationViewModel InitializationViewModel =>
         _serviceProvider.GetService<InitializationViewModel>();
     
+    public BackgroundThreeViewModel BackgroundThreeViewModel =>
+        _serviceProvider.GetService<BackgroundThreeViewModel>();
+    public GameThreeViewModel GameThreeViewModel =>
+        _serviceProvider.GetService<GameThreeViewModel>();
+    public ReturnThreeViewModel ReturnThreeViewModel =>
+        _serviceProvider.GetService<ReturnThreeViewModel>();
+    
+    public ResultThreeViewModel ResultThreeViewModel =>
+        _serviceProvider.GetService<ResultThreeViewModel>();
+
+    public GameTwoViewModel GameTwoViewModel =>
+        _serviceProvider.GetService<GameTwoViewModel>();
+
+    public BackgroundTwoViewModel BackgroundTwoViewModel =>
+        _serviceProvider.GetService<BackgroundTwoViewModel>();
+
+    public ResultTwoViewModel ResultTwoViewModel =>
+        _serviceProvider.GetService<ResultTwoViewModel>();
+
+    public BackgroundFourViewModel BackgroundFourViewModel =>
+        _serviceProvider.GetService<BackgroundFourViewModel>();
+    public GameFourViewModel GameFourViewModel =>
+        _serviceProvider.GetService<GameFourViewModel>();
+
+    public ResultFourViewModel ResultFourViewModel =>
+        _serviceProvider.GetService<ResultFourViewModel>();
+    
     public BackgroundFiveViewModel BackgroundFiveViewModel => _serviceProvider.GetService<BackgroundFiveViewModel>();
 
     public GameFiveViewModel GameFiveViewModel => _serviceProvider.GetService<GameFiveViewModel>();
@@ -67,6 +94,18 @@ public class ServiceLocator {
         serviceCollection.AddSingleton<BackgroundViewModel>();
         serviceCollection.AddSingleton<ReturnViewModel>();
         serviceCollection.AddSingleton<ResultViewModel>();
+        serviceCollection.AddSingleton<BackgroundThreeViewModel>();
+        serviceCollection.AddSingleton<GameThreeViewModel>();
+        serviceCollection.AddSingleton<ReturnThreeViewModel>();
+        serviceCollection.AddSingleton<ResultThreeViewModel>();
+        serviceCollection.AddSingleton<GameTwoViewModel>();
+        serviceCollection.AddSingleton<BackgroundTwoViewModel>();
+        serviceCollection.AddSingleton<ResultTwoViewModel>();
+
+
+        serviceCollection.AddSingleton<BackgroundFourViewModel>();
+        serviceCollection.AddSingleton<GameFourViewModel>();
+        serviceCollection.AddSingleton<ResultFourViewModel>();
         serviceCollection.AddSingleton<BackgroundFiveViewModel>();
         serviceCollection.AddSingleton<GameFiveViewModel>();
         serviceCollection.AddSingleton<ResultFiveViewModel>();
