@@ -21,13 +21,13 @@
                 Foreground="#3f4555"
                 HorizontalAlignment="Center"
                 Margin="30"
-                Text=" 完成探险，无论成功与否，都要回到故事的起点。时间会带给你力量，让你重新站起来。时间之旅，是你生命的历程，也是你成长的历程。"
+                Text="{Binding ReturnText}"
                 TextWrapping="Wrap" />
 
             <Button
                 Background="#E9E5D9"
                 Command="{Binding GoBackHomeViewCommand}"
-                Content="返回章节"
+                Content="返回"
                 Margin="30"
                 PointerEntered="Button_PointerEntered_1"
                 PointerExited="Button_PointerExited_2">

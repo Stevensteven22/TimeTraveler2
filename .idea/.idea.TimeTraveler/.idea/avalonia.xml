@@ -12,6 +12,7 @@
         <entry key="TimeTraveler/Styles/General.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Styles/GeneralStyle.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Styles/Notification.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/AnimationPlayerControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/Battery.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/ChapterButton.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/ChapterTimeLine.axaml" value="TimeTraveler/TimeTraveler.csproj" />
@@ -20,12 +21,14 @@
         <entry key="TimeTraveler/UserControls/ElectricControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/ElectricCurrent.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/FlameProgressBar.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/GameCharacter.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/Ice.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/IceSlider.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/OKButton.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/Rock.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/RockControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/ShowElementalControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/Sword.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/ThunderControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/UserControlsStyle.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/WindControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
@@ -33,6 +36,7 @@
         <entry key="TimeTraveler/Views/BackgroundThreeView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/BackgroundTwoView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/BackgroundView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/Views/GameSixView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/GameThreeView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/GameTwoView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/Views/GameView.axaml" value="TimeTraveler/TimeTraveler.csproj" />
