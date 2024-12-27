@@ -10,4 +10,6 @@ public interface IElementalService
     public Task InsertOrUpdateElementalAsync(ObservableCollection<ResultModel> args);
 
     public Task<ResultModel> GetElementalAsync(Expression<Func<ResultModel, bool>> predicate);
+
+    public Task InitializeElementalAsync();
 }

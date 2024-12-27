@@ -20,7 +20,8 @@ public class ElementalService : IElementalService
 
     public async Task InsertOrUpdateElementalAsync(ObservableCollection<ResultModel> args)
     {
-        List<Buff> buffs = new List<Buff>();
+        List<Buff> addBuffs = new List<Buff>();
+        List<Buff> updatedBuffs = new List<Buff>();
         foreach (var resultModel in args)
         {
             if (!resultModel.IsSelected)
@@ -33,7 +34,7 @@ public class ElementalService : IElementalService
                 switch (resultModel.ResultElementType)
                 {
                     case ElementType.FireElemental:
-                        buffs.Add(
+                        addBuffs.Add(
                             new Buff()
                             {
                                 Id = resultModel.Id,
@@ -45,7 +46,7 @@ public class ElementalService : IElementalService
                         );
                         break;
                     case ElementType.IceElemental:
-                        buffs.Add(
+                        addBuffs.Add(
                             new Buff()
                             {
                                 Id = resultModel.Id,
@@ -57,7 +58,7 @@ public class ElementalService : IElementalService
                         );
                         break;
                     case ElementType.RockElemental:
-                        buffs.Add(
+                        addBuffs.Add(
                             new Buff()
                             {
                                 Id = resultModel.Id,
@@ -69,7 +70,7 @@ public class ElementalService : IElementalService
                         );
                         break;
                     case ElementType.ThunderElemental:
-                        buffs.Add(
+                        addBuffs.Add(
                             new Buff()
                             {
                                 Id = resultModel.Id,
@@ -80,7 +81,7 @@ public class ElementalService : IElementalService
                         );
                         break;
                     case ElementType.WindElemental:
-                        buffs.Add(
+                        addBuffs.Add(
                             new Buff()
                             {
                                 Id = resultModel.Id,
@@ -119,15 +120,17 @@ public class ElementalService : IElementalService
                     case ElementType.WindElemental:
                         existingBuff.Value1 = existingBuff.Value1 + resultModel.ImprovedValue1;
                         break;
-                       
-                   
-                  
                 }
-            }
 
-            if (buffs.Count > 0)
-                await _buffStorage.AddBuffsAsync(buffs.ToArray());
+                updatedBuffs.Add(existingBuff);
+            }
         }
+
+        if (addBuffs.Count > 0)
+            await _buffStorage.AddBuffsAsync(addBuffs.ToArray());
+
+        if (updatedBuffs.Count > 0)
+            await _buffStorage.SaveBuffsAsync(updatedBuffs.ToArray());
     }
 
     public async Task<ResultModel> GetElementalAsync(Expression<Func<ResultModel, bool>> predicate)
@@ -151,6 +154,70 @@ public class ElementalService : IElementalService
             ActualValue2 = existingBuff.Value2,
         };
         return resultModel;
+    }
+
+    public async Task InitializeElementalAsync()
+    {
+        List<Buff> addBuffs = new List<Buff>();
+        await _buffStorage.RemoveAllBuffAsync();
+
+        addBuffs.Add(
+            new Buff()
+            {
+                Id = 1,
+                Name = "火元素",
+                Description = "攻击力",
+                Value1 = 0.0d,
+                Value2 = 10.0d,
+            }
+        );
+
+        addBuffs.Add(
+            new Buff()
+            {
+                Id = 2,
+                Name = "冰元素",
+                Description = "生命值",
+                Value1 = 0.0d,
+                Value2 = 100.0d,
+            }
+        );
+
+        addBuffs.Add(
+            new Buff()
+            {
+                Id = 3,
+                Name = "风元素",
+                Description = "闪避率",
+                Value1 = 10.0d,
+                Value2 = 0.0d,
+            }
+        );
+
+        addBuffs.Add(
+            new Buff()
+            {
+                Id = 4,
+                Name = "雷元素",
+                Description = "暴击率",
+                Value1 = 10.0d,
+                Value2 = 0.0d,
+            }
+        );
+
+        addBuffs.Add(
+            new Buff()
+            {
+                Id = 5,
+                Name = "岩元素",
+                Description = "防御力",
+                Value1 = 0.0d,
+                Value2 = 200.0d,
+            }
+        );
+
+        if (addBuffs.Count > 0)
+            await _buffStorage.AddBuffsAsync(addBuffs.ToArray());
     }
 
     public ElementType BuffNameConvertToElementalType(string buffName)

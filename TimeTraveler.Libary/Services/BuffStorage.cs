@@ -101,7 +101,7 @@ public class BuffStorage : IBuffStorage
         {
             foreach (var buff in buffs)
             {
-                buff.CreatedAt = DateTime.Now;
+                //buff.CreatedAt = DateTime.Now;
                 buff.UpdatedAt = DateTime.Now;
             }
             await Connection.UpdateAllAsync(buffs);
