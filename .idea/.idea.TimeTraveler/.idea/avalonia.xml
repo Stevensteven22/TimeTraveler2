@@ -21,6 +21,7 @@
         <entry key="TimeTraveler/UserControls/ElectricControl.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/ElectricCurrent.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/FlameProgressBar.axaml" value="TimeTraveler/TimeTraveler.csproj" />
+        <entry key="TimeTraveler/UserControls/FlyoutText.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/GameCharacter.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/Ice.axaml" value="TimeTraveler/TimeTraveler.csproj" />
         <entry key="TimeTraveler/UserControls/IceSlider.axaml" value="TimeTraveler/TimeTraveler.csproj" />

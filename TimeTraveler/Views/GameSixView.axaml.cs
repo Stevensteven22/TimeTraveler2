@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Platform;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -27,7 +28,29 @@ public partial class GameSixView : UserControl
             {
                 LeftSword.OnLeftAttacked();
                 GameBoss.IsKnockedBack = true;
-                BossHealthBar.Value -= 250;
+                //BossHealthBar.Value -= 250;
+                BossDeductHPText.OnTextFlown();
+            }
+        );
+
+        WeakReferenceMessenger.Default.Register<object, string>(
+            this,
+            "OnBossAttacking",
+            (sender, message) =>
+            {
+                RightSword.OnRightAttacked();
+            }
+        );
+
+        WeakReferenceMessenger.Default.Register<object, string>(
+            this,
+            "TextFlyout",
+            (sender, message) =>
+            {
+                if (message.ToString() == "Character")
+                    CharacterDeductHPText.OnTextFlown();
+                else if (message.ToString() == "Boss")
+                    BossDeductHPText.OnTextFlown();
             }
         );
 
@@ -38,7 +61,8 @@ public partial class GameSixView : UserControl
             {
                 RightSword.OnRightAttacked();
                 GameCharacter.IsKnockedBack = true;
-                CharacterHealthBar.Value -= 20;
+                //CharacterHealthBar.Value -= 30;
+                CharacterDeductHPText.OnTextFlown();
             }
         );
 

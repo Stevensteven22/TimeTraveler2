@@ -40,7 +40,7 @@ public class ElementalService : IElementalService
                                 Name = resultModel.Name,
                                 Description = resultModel.Description,
                                 Value1 = resultModel.ImprovedValue1,
-                                Value2 = 100.0d * (1.0d + (resultModel.ImprovedValue2 / 100.0d)),
+                                Value2 = 10.0d * (1.0d + (resultModel.ImprovedValue2 / 100.0d)),
                             }
                         );
                         break;
@@ -52,7 +52,7 @@ public class ElementalService : IElementalService
                                 Name = resultModel.Name,
                                 Description = resultModel.Description,
                                 Value1 = resultModel.ImprovedValue1,
-                                Value2 = 1000.0d * (1.0d + (resultModel.ImprovedValue2 / 100.0d)),
+                                Value2 = 100.0d * (1.0d + (resultModel.ImprovedValue2 / 100.0d)),
                             }
                         );
                         break;

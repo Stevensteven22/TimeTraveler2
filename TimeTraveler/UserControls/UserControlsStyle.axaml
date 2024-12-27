@@ -15,4 +15,5 @@
     <StyleInclude Source="AnimationPlayerControl.axaml" />
     <StyleInclude Source="GameCharacter.axaml" />
     <StyleInclude Source="Sword.axaml" />
+    <StyleInclude Source="FlyoutText.axaml" />
 </Styles>

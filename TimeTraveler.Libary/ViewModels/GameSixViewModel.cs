@@ -16,6 +16,12 @@ public partial class GameSixViewModel : ViewModelBase
     private readonly IElementalService _elementalService;
 
     [ObservableProperty]
+    private string _characterDeductHPText = string.Empty;
+
+    [ObservableProperty]
+    private string _bossDeductHPText = string.Empty;
+
+    [ObservableProperty]
     private double _bossMaxHP = 1000;
 
     [ObservableProperty]
@@ -122,33 +128,61 @@ public partial class GameSixViewModel : ViewModelBase
         _characterCRI,
         _characterDOD;
 
+    private const double FixedATK = 200.0d,
+        FixedCharacterHP = 100.0d;
+
     private async void Initialize()
     {
         var resultModel = await _elementalService.GetElementalAsync(x => x.Name == "冰元素");
         if (resultModel != null)
         {
-            _characterHP = Math.Round(resultModel.ActualValue2);
+            _characterHP =
+                resultModel.ActualValue2 == 0.0d
+                    ? FixedCharacterHP
+                    : FixedCharacterHP * (1.0d + (resultModel.ActualValue2 / 100.0d));
+            _characterHP = Math.Round(_characterHP);
             CharacterCurrentHP = _characterHP;
             CharacterMaxHP = _characterHP;
         }
 
         resultModel = await _elementalService.GetElementalAsync(x => x.Name == "火元素");
         if (resultModel != null)
-            _characterATK = resultModel.ActualValue1;
+        {
+            _characterATK =
+                resultModel.ActualValue2 == 0.0d
+                    ? FixedATK
+                    : FixedATK * (1.0d + (resultModel.ActualValue2 / 100.0d));
+            _characterATK = Math.Round(_characterATK);
+        }
         resultModel = await _elementalService.GetElementalAsync(x => x.Name == "风元素");
         if (resultModel != null)
-            _characterCRI = resultModel.ActualValue1;
+            _characterCRI = resultModel.ActualValue1 == 0.0d ? 15.0d : resultModel.ActualValue1;
         resultModel = await _elementalService.GetElementalAsync(x => x.Name == "雷元素");
         if (resultModel != null)
-            _characterDOD = resultModel.ActualValue1;
+            _characterDOD = resultModel.ActualValue1 == 0.0d ? 15.0d : resultModel.ActualValue1;
     }
+
+    private const double FixedBossATK = 30.0d;
 
     private void ToBossAttack(object? sender, EventArgs e)
     {
         Dispatcher.UIThread.InvokeAsync(() =>
         {
             IsBossAttacking = true;
-            WeakReferenceMessenger.Default.Send(new object(), "OnBossAttacked");
+            var random = new Random();
+            if (random.Next(0, 100) >= _characterCRI) // _characterCRI命中概率
+            {
+                CharacterCurrentHP -= FixedBossATK; // 受到boss攻击伤害
+                CharacterDeductHPText = $"受到{FixedBossATK}点的伤害！";
+                WeakReferenceMessenger.Default.Send(new object(), "OnBossAttacked");
+            }
+            else
+            {
+                WeakReferenceMessenger.Default.Send(new object(), "OnBossAttacking");
+                CharacterDeductHPText = "闪避了攻击！";
+                WeakReferenceMessenger.Default.Send((object)"Character", "TextFlyout");
+                IsBossAttacking = false;
+            }
         });
     }
 
@@ -190,6 +224,20 @@ public partial class GameSixViewModel : ViewModelBase
     private void Attack()
     {
         IsCharacterAttacking = true;
+        var random = new Random();
+        if (random.Next(0, 100) < _characterDOD)
+        {
+            BossCurrentHP -= _characterATK * 1.5d;
+            CharacterDeductHPText = "发动了暴击！";
+            BossDeductHPText = $"受到{_characterATK * 1.5d}点的伤害！";
+            WeakReferenceMessenger.Default.Send((object)"Character", "TextFlyout");
+        }
+        else
+        {
+            BossCurrentHP -= _characterATK;
+            BossDeductHPText = $"受到{_characterATK}点的伤害！";
+        }
+
         WeakReferenceMessenger.Default.Send(new object(), "OnCharacterAttacked");
     }
 }

@@ -86,15 +86,20 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <userControls:GameCharacter
-                    Grid.Column="0"
-                    Height="300"
-                    Index="0"
-                    IsPlayCompleted="{Binding IsCharacterKnockedBackCompleted, Mode=OneWayToSource}"
-                    KnockedBackResourceUri="avares://TimeTraveler/Assets/狐仙击退2.mp4"
-                    ResourceUri="avares://TimeTraveler/Assets/狐仙进击2.mp4"
-                    Width="300"
-                    x:Name="GameCharacter" />
+                <Grid Grid.Column="0">
+                    <userControls:GameCharacter
+                        Height="300"
+                        Index="0"
+                        IsPlayCompleted="{Binding IsCharacterKnockedBackCompleted, Mode=OneWayToSource}"
+                        KnockedBackResourceUri="avares://TimeTraveler/Assets/狐仙击退2.mp4"
+                        ResourceUri="avares://TimeTraveler/Assets/狐仙进击2.mp4"
+                        Width="300"
+                        x:Name="GameCharacter" />
+                    <userControls:FlyoutText
+                        TextContent="{Binding CharacterDeductHPText, Mode=TwoWay}"
+                        VerticalAlignment="Center"
+                        x:Name="CharacterDeductHPText" />
+                </Grid>
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -121,15 +126,20 @@
                         x:Name="RightSword" />
                 </Grid>
 
-                <userControls:GameCharacter
-                    Grid.Column="2"
-                    Height="300"
-                    Index="2"
-                    IsPlayCompleted="{Binding IsBossKnockedBackCompleted, Mode=OneWayToSource}"
-                    KnockedBackResourceUri="avares://TimeTraveler/Assets/树妖击退2.mp4"
-                    ResourceUri="avares://TimeTraveler/Assets/树妖进击2.mp4"
-                    Width="300"
-                    x:Name="GameBoss" />
+                <Grid Grid.Column="2">
+                    <userControls:GameCharacter
+                        Height="300"
+                        Index="2"
+                        IsPlayCompleted="{Binding IsBossKnockedBackCompleted, Mode=OneWayToSource}"
+                        KnockedBackResourceUri="avares://TimeTraveler/Assets/树妖击退2.mp4"
+                        ResourceUri="avares://TimeTraveler/Assets/树妖进击2.mp4"
+                        Width="300"
+                        x:Name="GameBoss" />
+                    <userControls:FlyoutText
+                        TextContent="{Binding BossDeductHPText, Mode=TwoWay}"
+                        VerticalAlignment="Center"
+                        x:Name="BossDeductHPText" />
+                </Grid>
 
             </Grid>
             <!--  游戏界面  -->
