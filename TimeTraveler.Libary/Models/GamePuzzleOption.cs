@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace TimeTraveler.Libary.Models;
 
-public partial class GamePuzzleOption : ObservableObject
+public partial class GamePuzzleOption:ObservableObject
 {
     [ObservableProperty]
     private Bitmap _icon;
@@ -13,7 +13,4 @@ public partial class GamePuzzleOption : ObservableObject
     
     [ObservableProperty]
     private bool _isSelected;
-
-    [ObservableProperty]
-    bool _isCorrect;
 }

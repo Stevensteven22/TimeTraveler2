@@ -12,4 +12,7 @@
     <StyleInclude Source="Battery.axaml" />
     <StyleInclude Source="ThunderControl.axaml" />
     <StyleInclude Source="ElectricCurrent.axaml" />
+    <StyleInclude Source="AnimationPlayerControl.axaml" />
+    <StyleInclude Source="GameCharacter.axaml" />
+    <StyleInclude Source="Sword.axaml" />
 </Styles>

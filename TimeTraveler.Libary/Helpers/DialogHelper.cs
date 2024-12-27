@@ -26,7 +26,6 @@ public static class DialogHelper
             CanDragMove = true,
             CanResize = false,
         };
-
         if (viewModel == null)
             viewModel = Activator.CreateInstance<TViewModel>();
 

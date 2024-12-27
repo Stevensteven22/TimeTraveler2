@@ -15,9 +15,20 @@ public class ChapterNavigationService : IChapterNavigationService
             ViewType.GameView => ServiceLocator.Current.GameViewModel,
             ViewType.ResultView => ServiceLocator.Current.ResultViewModel,
             ViewType.ReturnView => ServiceLocator.Current.ReturnViewModel,
-            ViewType.BackgroundFiveView => ServiceLocator.Current.BackgroundFiveViewModel,
-            ViewType.GameFiveView => ServiceLocator.Current.GameFiveViewModel,
-            ViewType.ResultFiveView => ServiceLocator.Current.ResultFiveViewModel,
+            
+            ViewType.BackgroundThreeView => ServiceLocator.Current.BackgroundThreeViewModel,
+            ViewType.GameThreeView => ServiceLocator.Current.GameThreeViewModel,
+            ViewType.ResultThreeView => ServiceLocator.Current.ResultThreeViewModel,
+            ViewType.ReturnThreeView => ServiceLocator.Current.ReturnThreeViewModel,
+            ViewType.BackgroundTwoView =>ServiceLocator.Current.BackgroundTwoViewModel,
+            ViewType.GameTwoView =>ServiceLocator.Current.GameTwoViewModel,
+            ViewType.ResultTwoView =>ServiceLocator.Current.ResultTwoViewModel,
+
+            ViewType.BackgroundFourView => ServiceLocator.Current.BackgroundFourViewModel,
+            ViewType.GameFourView => ServiceLocator.Current.GameFourViewModel,
+            ViewType.ResultFourView => ServiceLocator.Current.ResultFourViewModel,
+            
+            ViewType.GameSixView => ServiceLocator.Current.GameSixViewModel,
             //在这里扩展章节：继续添加要导航的页面
             _ => throw new Exception("未知的视图。"),
         };
@@ -25,6 +36,12 @@ public class ChapterNavigationService : IChapterNavigationService
         if (parameter is not null)
         {
             viewModel.SetParameter(parameter);
+        }
+        
+        if (viewModel is GameThreeViewModel gameThreeViewModel)
+        {
+            gameThreeViewModel.RestartCommand.Execute(null);
+
         }
 
         ServiceLocator.Current.MainViewModel.Content = viewModel;

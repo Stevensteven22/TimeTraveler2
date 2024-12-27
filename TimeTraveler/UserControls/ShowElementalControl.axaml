@@ -4,12 +4,8 @@
     xmlns:converters="clr-namespace:TimeTraveler.Converters"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
-        <StackPanel>
-            <controls:ShowElementalControl ElementalImage="FireElemental" IsShowEnabled="True" />
-            <controls:ShowElementalControl ElementalImage="FireElemental" IsShowEnabled="True" />
-        </StackPanel>
-        
-
+        <controls:ShowElementalControl />
+        <converters:ElementTypeToImageConverter x:Key="ElementTypeToImageConverter" />
     </Design.PreviewWith>
 
     <Style Selector="controls|ShowElementalControl /template/Button#PART_Element">

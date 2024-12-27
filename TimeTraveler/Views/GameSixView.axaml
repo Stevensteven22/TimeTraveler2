@@ -1,0 +1,153 @@
+﻿<UserControl
+    d:DataContext="{d:DesignInstance {x:Type vm:GameSixViewModel}}"
+    d:DesignHeight="1000"
+    d:DesignWidth="1200"
+    mc:Ignorable="d"
+    x:Class="TimeTraveler.Views.GameSixView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:TimeTraveler.UserControls"
+    xmlns:vm="clr-namespace:TimeTraveler.Libary.ViewModels;assembly=TimeTraveler.Libary"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Interaction.Behaviors>
+        <EventTriggerBehavior EventName="Loaded">
+            <InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </EventTriggerBehavior>
+        <EventTriggerBehavior EventName="Unloaded">
+            <InvokeCommandAction Command="{Binding UnloadedCommand}" />
+        </EventTriggerBehavior>
+    </Interaction.Behaviors>
+    <UserControl.Resources>
+        <!--  游戏界面颜色资源  -->
+        <Color x:Key="TitleColor">#d3bc8e</Color>
+        <Color x:Key="ContentColor">#b1aca4</Color>
+        <Color x:Key="ControlColor">#3f4555</Color>
+    </UserControl.Resources>
+    <!--  游戏界面  -->
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Source="../Assets/原神关卡5背景图.png" Stretch="UniformToFill" />
+        </Grid.Background>
+        <Border Background="Black" Opacity="0.5" />
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*" />
+                <RowDefinition Height="6*" />
+                <RowDefinition Height="1.5*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ProgressBar
+                    Background="#3f4555"
+                    Classes="Danger"
+                    CornerRadius="15"
+                    Height="40"
+                    Maximum="{Binding CharacterMaxHP, Mode=OneWay}"
+                    Minimum="0"
+                    Opacity="0.7"
+                    ProgressTextFormat="角色生命值: {0}"
+                    ShowProgressText="True"
+                    Value="{Binding CharacterCurrentHP, Mode=TwoWay}"
+                    Width="350"
+                    x:Name="CharacterHealthBar" />
+                <TextBlock
+                    FontSize="50"
+                    Foreground="#c7c0a6"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Text="最终对决"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center" />
+                <ProgressBar
+                    Background="#3f4555"
+                    Classes="Danger"
+                    CornerRadius="15"
+                    Grid.Column="2"
+                    Height="40"
+                    Maximum="{Binding BossMaxHP, Mode=OneWay}"
+                    Minimum="0"
+                    Opacity="0.7"
+                    ProgressTextFormat="Boss生命值: {0}"
+                    ShowProgressText="True"
+                    Value="{Binding BossCurrentHP, Mode=TwoWay}"
+                    Width="350"
+                    x:Name="BossHealthBar" />
+            </Grid>
+            <Grid Grid.Row="1" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <userControls:GameCharacter
+                    Grid.Column="0"
+                    Height="300"
+                    Index="0"
+                    IsPlayCompleted="{Binding IsCharacterKnockedBackCompleted, Mode=OneWayToSource}"
+                    KnockedBackResourceUri="avares://TimeTraveler/Assets/狐仙击退2.mp4"
+                    ResourceUri="avares://TimeTraveler/Assets/狐仙进击2.mp4"
+                    Width="300"
+                    x:Name="GameCharacter" />
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <userControls:Sword
+                        Grid.Column="0"
+                        Height="350"
+                        ImageSource="/Assets/剑1.png"
+                        ZIndex="1"
+                        x:Name="LeftSword" />
+                    <userControls:AnimationPlayerControl
+                        Grid.Column="1"
+                        Height="150"
+                        Index="1"
+                        ResourceUri="avares://TimeTraveler/Assets/火焰燃烧3.mp4"
+                        Width="150" />
+                    <userControls:Sword
+                        Grid.Column="2"
+                        Height="350"
+                        ImageSource="/Assets/剑2.png"
+                        ZIndex="1"
+                        x:Name="RightSword" />
+                </Grid>
+
+                <userControls:GameCharacter
+                    Grid.Column="2"
+                    Height="300"
+                    Index="2"
+                    IsPlayCompleted="{Binding IsBossKnockedBackCompleted, Mode=OneWayToSource}"
+                    KnockedBackResourceUri="avares://TimeTraveler/Assets/树妖击退2.mp4"
+                    ResourceUri="avares://TimeTraveler/Assets/树妖进击2.mp4"
+                    Width="300"
+                    x:Name="GameBoss" />
+
+            </Grid>
+            <!--  游戏界面  -->
+            <StackPanel
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="30"
+                VerticalAlignment="Top">
+                <userControls:OKButton
+                    Command="{Binding AttackCommand}"
+                    Content="普通攻击"
+                    x:Name="AttackButton" />
+                <userControls:OKButton Command="{Binding AttackCommand}" Content="火焰灼烧" />
+                <userControls:OKButton Command="{Binding AttackCommand}" Content="冰冻" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+
+</UserControl>

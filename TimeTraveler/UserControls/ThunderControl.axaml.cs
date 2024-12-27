@@ -5,6 +5,9 @@ using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using CommunityToolkit.Mvvm.Input;
 using TimeTraveler.Libary.Models;
 
@@ -48,12 +51,41 @@ public class ThunderControl : TemplatedControl
     public ObservableCollection<BatteryModel> Batteries { get; private set; } =
         new ObservableCollection<BatteryModel>();
 
-    public ICommand ClickBatteryCommand => new RelayCommand<BatteryModel>(OnBatteryClicked);
+    public ICommand ClickBatteryCommand => new RelayCommand<object>(OnBatteryClicked);
+
+    public ICommand DropBatteryCommand => new RelayCommand<object>(OnBatteryDropped);
+
+    public Battery PART_LeftBattery =>
+        this.GetTemplateChildren().FirstOrDefault(e => e.Name == "PART_LeftBattery") as Battery;
+
+    private void OnBatteryDropped(object? obj)
+    {
+        if (obj is ListBoxItem item)
+        {
+            if (item.DataContext is BatteryModel batteryModel)
+            {
+                batteryModel.IsClicked = true;
+                if (batteryModel.IsHasElement)
+                {
+                    IsCompleted = true;
+                }
+                //Dropping is completed, 移除高亮效果
+                item.GetTemplateChildren()
+                    .OfType<Border>()
+                    .First()
+                    .Classes.Remove("dropHighlight");
+            }
+        }
+    }
 
     public ThunderControl()
     {
         InitializeThunderControl();
+
+        this.AddHandler(TemplatedControl.LoadedEvent, Loaded);
     }
+
+    private void Loaded(object? sender, RoutedEventArgs e) { }
 
     private void InitializeThunderControl()
     {
@@ -66,12 +98,15 @@ public class ThunderControl : TemplatedControl
         batteries.ForEach(Batteries.Add);
     }
 
-    private void OnBatteryClicked(BatteryModel? obj)
+    private void OnBatteryClicked(object? obj)
     {
-        obj.IsClicked = true;
-        if (obj.IsHasElement)
+        /*if (obj is BatteryModel batteryModel)
         {
-            IsCompleted = true;
-        }
+            batteryModel.IsClicked = true;
+            if (batteryModel.IsHasElement)
+            {
+                IsCompleted = true;
+            }
+        }*/
     }
 }

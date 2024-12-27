@@ -18,7 +18,7 @@ public static class ChapterNavigationConstant
     >()
     {
         [1] = new List<ViewType>()
-        {
+        {           
             ViewType.BackgroundView,
             ViewType.GameView,
             ViewType.ResultView,
@@ -27,37 +27,35 @@ public static class ChapterNavigationConstant
         //扩展章节：在这里修改/添加章节的页面
         [2] = new List<ViewType>()
         {
-            ViewType.BackgroundView,
-            ViewType.GameView,
-            ViewType.ResultView,
+            ViewType.BackgroundTwoView,
+            ViewType.GameTwoView,
+            ViewType.ResultTwoView,
             ViewType.ReturnView,
         },
         [3] = new List<ViewType>()
         {
-            ViewType.BackgroundView,
-            ViewType.GameView,
-            ViewType.ResultView,
-            ViewType.ReturnView,
+            ViewType.BackgroundThreeView,
+            ViewType.GameThreeView,
+            ViewType.ResultThreeView,
+            ViewType.ReturnThreeView,
         },
         [4] = new List<ViewType>()
         {
-            ViewType.BackgroundView,
-            ViewType.GameView,
-            ViewType.ResultView,
+            ViewType.BackgroundFourView,
+            ViewType.GameFourView,
+            ViewType.ResultFourView,
             ViewType.ReturnView,
         },
         [5] = new List<ViewType>()
         {
-            ViewType.BackgroundFiveView,
-            ViewType.GameFiveView,
-            ViewType.ResultFiveView,
+            ViewType.BackgroundView,
+            ViewType.GameView,
+            ViewType.ResultView,
             ViewType.ReturnView,
         },
         [6] = new List<ViewType>()
         {
-            ViewType.BackgroundView,
-            ViewType.GameView,
-            ViewType.ResultView,
+            ViewType.GameSixView,
             ViewType.ReturnView,
         },
     };
@@ -66,10 +64,21 @@ public static class ChapterNavigationConstant
 public enum ViewType
 {
     BackgroundView,
+    BackgroundTwoView,
     GameView,
+    GameTwoView,
     ResultView,
-    BackgroundFiveView,
-    GameFiveView,
-    ResultFiveView,
+    ResultTwoView,
     ReturnView,
+    
+    BackgroundThreeView,
+    GameThreeView,
+    ResultThreeView,
+    ReturnThreeView,
+    
+    BackgroundFourView,
+    GameFourView,
+    ResultFourView,
+    
+    GameSixView,
 }
